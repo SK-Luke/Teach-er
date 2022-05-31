@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_31_100812) do
+ActiveRecord::Schema.define(version: 2022_05_31_101301) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,25 @@ ActiveRecord::Schema.define(version: 2022_05_31_100812) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.time "mon_start_time"
+    t.time "mon_end_time"
+    t.time "tues_start_time"
+    t.time "tues_end_time"
+    t.time "wed_start_time"
+    t.time "wed_end_time"
+    t.time "thur_start_time"
+    t.time "thur_end_time"
+    t.time "fri_start_time"
+    t.time "fri_end_time"
+    t.time "sat_start_time"
+    t.time "sat_end_time"
+    t.time "sun_start_time"
+    t.time "sun_end_time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "subjects", force: :cascade do |t|
