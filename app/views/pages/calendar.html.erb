@@ -5,15 +5,18 @@
         <h2>My Schedule</h2>
       </div>
 
-      <%= month_calendar(events: @availability_slot, end_attribute: :end_time) do |date, availabilities| %>
-        <%= date %>
+      <div class="calendar-container">
+        <%= month_calendar(events: @availability_slot, end_attribute: :end_time) do |date, availabilities| %>
+          <%= date %>
 
-        <% availabilities.each do |availabilty| %>
-          <div class="meeting">
-            <p>Available</p>
-          </div>
+          <% availabilities.each do |availability| %>
+            <div class="availability">
+              <p>Available</p>
+              <small><%= availability.time unless availability.multi_days? %></small>
+            </div>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
 
     </div>
     <div class="col-4">
@@ -21,8 +24,15 @@
         <h3>Add an Availability</h3>
 
         <%= simple_form_for(@new_availability) do |f| %>
-          <%= f.input :start_time, input_html: {class: "datepicker"} %>
-          <%= f.input :end_time, input_html: {class: "datepicker"} %>
+          <%= f.input :start_time, as: :string, input_html: {class: "datepicker"} %>
+          <%= f.input :end_time, as: :string, input_html: {class: "datepicker"} %>
+          <%= f.submit "Add availability", class: "btn btn-flat mb-3" %>
+        <% end %>
+
+        <h3>Set your weekly schedule</h3>
+        <%= simple_form_for(@schedule) do |f| %>
+          <%= f.input :start_time, as: :string, input_html: {class: "datepicker"} %>
+          <%= f.input :end_time, as: :string, input_html: {class: "datepicker"} %>
           <%= f.submit "Add availability", class: "btn btn-flat mb-3" %>
         <% end %>
       </div>
