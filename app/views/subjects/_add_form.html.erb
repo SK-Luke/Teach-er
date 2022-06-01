@@ -1,7 +1,12 @@
-<%= simple_form_for @subject do |f| %>
-  <%= f.input :title, collection: Subject::SUBJECTS%>
-  <%= f.input :description %>
-  <%= f.input :hourly_rate %>
-  <%= f.input :grade, collection: Subject::GRADES%>
-  <%= f.submit class: "btn btn-primary" %>
-<% end %>
+
+<div class="container" >
+  <%= simple_form_for @subject do |f| %>
+    <%= f.input :title, collection: Subject::SUBJECTS%>
+    <%= f.input :description %>
+    <%= f.input :hourly_rate %>
+    <div class="grades" data-controller="grades">
+      <%= f.input :grade, collection: Subject::GRADES%>
+    </div>
+    <%= f.submit class: "btn btn-primary" %>
+  <% end %>
+</div>
