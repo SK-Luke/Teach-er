@@ -5,6 +5,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
+  border-radius: 10px;
 }
 
 .teacherCard-left {
@@ -17,6 +18,9 @@
   font-size: 12px;
 }
 
+.teacherCard-description {
+  border-radius: 10px;
+}
 // .teacherCard-right {
 //   margin: 0 20px 0 0;
 // }
