@@ -5,17 +5,15 @@ class AvailabilitiesController < ApplicationController
   #   @availability = Availability.all
   # end
 
-  # def create
-  #   @availability = availability.new(availability_params)
-  #   if @availability.save
-  #     redirect_to availability_path(@availability)
-  #   else
-  #     render :new
-  #   end
-  # end
+  def create
+    @availability = Availability.new(availability_params)
+    @availability.user = current_user
 
-  def new
-    @availability = availability.new
+    if @availability.save
+      redirect_to '/calendar'
+    else
+      render 'pages/calendar'
+    end
   end
 
   # def edit
@@ -38,11 +36,11 @@ class AvailabilitiesController < ApplicationController
   #   @review = @availability.reviews
   # end
 
-  # private
+  private
 
-  # def availability_params
-  #   params.require(:availability).permit(:name, :address, :phone_number, :category, :id)
-  # end
+  def availability_params
+    params.require(:availability).permit(:start_time, :end_time)
+  end
 
   # def set_availability
   #   @availability = availability.find(params[:id])
