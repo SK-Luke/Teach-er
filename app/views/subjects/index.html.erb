@@ -1,0 +1,17 @@
+<h1>My subjects</h1>
+
+<div class="container">
+  <ul class = 'list-group'>
+    <% @subjects.each do |subject| %>
+      <li class = 'list-group-item'><%= subject.title %></li>
+    <% end %>
+  </ul>
+</div>
+
+<%= simple_form_for @subject do |f| %>
+  <%= f.input :title, collection: Subject::SUBJECTS %>
+  <%= f.input :description %>
+  <%= f.input :hourly_rate %>
+  <%= f.input :grade, collection: Subject::GRADES %>
+  <%= f.submit class: "btn btn-primary" %>
+<% end %>
