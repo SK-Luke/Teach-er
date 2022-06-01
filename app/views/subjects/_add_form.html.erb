@@ -1,0 +1,7 @@
+<%= simple_form_for @subject do |f| %>
+  <%= f.input :title, collection: Subject::SUBJECTS%>
+  <%= f.input :description %>
+  <%= f.input :hourly_rate %>
+  <%= f.input :grade, collection: Subject::GRADES%>
+  <%= f.submit class: "btn btn-primary" %>
+<% end %>

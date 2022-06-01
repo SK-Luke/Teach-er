@@ -3,7 +3,9 @@
 <div class="container">
   <ul class = 'list-group'>
     <% @subjects.each do |subject| %>
-      <li class = 'list-group-item'><%= subject.title %></li>
+      <li class = 'list-group-item'><%= subject.title %>
+      <%= link_to "edit", edit_subject_path(subject) %>
+      </li>
     <% end %>
   </ul>
 </div>

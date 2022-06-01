@@ -29,6 +29,7 @@ class SubjectsController < ApplicationController
   end
 
   def edit
+    @subjects = Subject.all
   end
 
   def update
