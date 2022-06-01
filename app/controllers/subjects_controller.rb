@@ -15,10 +15,8 @@ class SubjectsController < ApplicationController
 
   def create
     @subject = Subject.new(subject_params)
-    @subject.grade << params["subject"][:grade]
     @subject.user = current_user
     @subject.save
-
     redirect_to subjects_path(@subject)
   end
 
@@ -45,6 +43,7 @@ class SubjectsController < ApplicationController
   end
 
   def subject_params
-    params.require(:subject).permit(:title, :description, :hourly_rate, :grade)
+    params[:subject][:grade].shift
+    params.require(:subject).permit(:title, :description, :hourly_rate, grade: [])
   end
 end
