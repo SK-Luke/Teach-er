@@ -5,6 +5,10 @@
     <% @subjects.each do |subject| %>
       <li class = 'list-group-item'><%= subject.title %>
       <%= link_to "edit", edit_subject_path(subject) %>
+      <%= link_to "🗑️",
+            subject_path(subject),
+            method: :delete,
+            data: { confirm: "Are you sure?" } %>
       </li>
     <% end %>
   </ul>

@@ -25,7 +25,7 @@ class SubjectsController < ApplicationController
   def destroy
     @subject.destroy
 
-    redirect_to subjects_path
+    redirect_to subjects_path(@subject)
   end
 
   def edit
