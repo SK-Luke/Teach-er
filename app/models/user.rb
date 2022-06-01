@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :availabilities, dependent: :destroy
-  has_many :bookings
+  has_many :bookings, through: :subjects
   has_one :schedule
 
   # Include default devise modules. Others available are:
