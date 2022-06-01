@@ -1,0 +1,9 @@
+<h1>My subjects</h1>
+
+<div class="container">
+  <ul class = 'list-group'>
+    <% @subjects.each do |subject| %>
+      <li class = 'list-group-item'><%= subject.title %></li>
+    <% end %>
+  </ul>
+</div>
