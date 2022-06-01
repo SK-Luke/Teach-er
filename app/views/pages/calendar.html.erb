@@ -30,11 +30,75 @@
         <% end %>
 
         <h3>Set your weekly schedule</h3>
-        <%= simple_form_for(@schedule) do |f| %>
-          <%= f.input :start_time, as: :string, input_html: {class: "datepicker"} %>
-          <%= f.input :end_time, as: :string, input_html: {class: "datepicker"} %>
-          <%= f.submit "Add availability", class: "btn btn-flat mb-3" %>
-        <% end %>
+          <div class="container px-0">
+            <%= simple_form_for(@schedule) do |f| %>
+              <div class="schedule row align-items-center">
+                <h3>Monday</h3>
+                <div class="col">
+                  <%= f.input :mon_start_time, :label => "Start Time" %>
+                </div>
+                <div class="col">
+                  <%= f.input :mon_end_time, :label => "End Time" %>
+                </div>
+              </div>
+              <div class="schedule row align-items-center">
+                <h3>Tuesday</h3>
+                <div class="col">
+                  <%= f.input :tues_start_time, :label => "Start Time" %>
+                </div>
+                <div class="col">
+                  <%= f.input :tues_end_time, :label => "End Time" %>
+                </div>
+              </div>
+              <div class="schedule row align-items-center">
+                <h3>Wednesday</h3>
+                <div class="col">
+                  <%= f.input :wed_start_time, :label => "Start Time" %>
+                </div>
+                <div class="col">
+                  <%= f.input :wed_end_time, :label => "End Time" %>
+                </div>
+              </div>
+              <div class="schedule row align-items-center">
+                <h3>Thursday</h3>
+                <div class="col">
+                  <%= f.input :thur_start_time, :label => "Start Time" %>
+                </div>
+                <div class="col">
+                  <%= f.input :thur_end_time, :label => "End Time" %>
+                </div>
+              </div>
+              <div class="schedule row align-items-center">
+                <h3>Friday</h3>
+                <div class="col">
+                  <%= f.input :fri_start_time, :label => "Start Time" %>
+                </div>
+                <div class="col">
+                  <%= f.input :fri_end_time, :label => "End Time" %>
+                </div>
+              </div>
+              <div class="schedule row align-items-center">
+                <h3>Saturday</h3>
+                <div class="col">
+                  <%= f.input :sat_start_time, :label => "Start Time" %>
+                </div>
+                <div class="col">
+                  <%= f.input :sat_end_time, :label => "End Time" %>
+                </div>
+              </div>
+              <div class="schedule row align-items-center">
+                <h3>Sunday</h3>
+                <div class="col">
+                  <%= f.input :sun_start_time, :label => "Start Time" %>
+                </div>
+                <div class="col">
+                  <%= f.input :sun_end_time, :label => "End Time" %>
+                </div>
+              </div>
+              <%= f.submit "Set Schedule", class: "btn btn-flat mb-3" %>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
