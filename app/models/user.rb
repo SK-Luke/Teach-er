@@ -6,6 +6,10 @@ class User < ApplicationRecord
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  ROLES = %w[Teacher Student]
+  validates :email, :username, presence: true
+  validates :role, inclusion: { in: ROLES }
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 end
