@@ -4,7 +4,10 @@ Rails.application.routes.draw do
     get '/users/sign_out', to: 'devise/sessions#destroy'
   end
   root to: 'pages#home'
+  get '/calendar', to: 'pages#calendar'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :schedules, only: %i[new create edit]
+  resources :availabilities, only: %i[new create]
 
   # On teachers subject page, able to create subject (get+post, new + create)
   # On teachers subject, show my subjects (get, index)

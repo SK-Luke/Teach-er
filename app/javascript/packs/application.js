@@ -12,6 +12,10 @@ Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
 
+
 import "controllers";
 import "bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import { initFlatpickr } from "../plugins/flatpickr";
+
+initFlatpickr();
