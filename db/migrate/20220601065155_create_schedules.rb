@@ -15,6 +15,7 @@ class CreateSchedules < ActiveRecord::Migration[6.1]
       t.time :sat_end_time
       t.time :sun_start_time
       t.time :sun_end_time
+      t.references :user, null: false, foreign_key: true
 
       t.timestamps
     end
