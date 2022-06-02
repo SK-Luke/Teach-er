@@ -7,17 +7,21 @@
 
       <div class="calendar-container">
         <% if @availability_slot %>
-          <%= month_calendar(events: @availability_slot, end_attribute: :end_time) do |date, availabilities| %>
+          <%= week_calendar(events: @availability_slot, end_attribute: :end_time) do |date, availabilities| %>
             <%= date %>
             <% availabilities.each do |availability| %>
-              <div class="availability">
-                <p>Available</p>
+              <div class="<%= availability.blocker ? 'booking' : 'available' %>">
+                <p><% if availability.blocker %>
+                  Booking
+                <% else %>
+                  Available
+                <% end %></p>
                 <small><%= availability.time unless availability.multi_days? %></small>
               </div>
             <% end %>
           <% end %>
         <% else %>
-          <%= month_calendar do |date| %>
+          <%= week_calendar do |date| %>
             <%= date %>
           <% end %>
         <% end %>
