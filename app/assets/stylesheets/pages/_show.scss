@@ -13,3 +13,35 @@
 .teacherCard-description p {
   font-size: 12px;
 }
+
+.calender {
+  width: 500px;
+  height: 250px;
+  background-color: rgb(114, 109, 0);
+}
+
+.first_span {
+  margin: 0 0 0 5px;
+}
+
+.review-card {
+  margin: 15px 0;
+}
+
+.text-yellow {
+  color: rgb(242, 161, 56);
+}
+
+.right-container-hr {
+  // visibility: hidden;
+  display: none;
+}
+@media (max-width: 992px) {
+  .right-container > h2 {
+    // background-color: lightblue;
+    padding: 8px 0;
+  }
+  .right-container-hr {
+    display: block;
+  }
+}
