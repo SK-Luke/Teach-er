@@ -1,9 +1,17 @@
+<%# Details include student name
+    Grade level + Subject
+    Number of lessons, add if able
+    Display Date of bookings
+     %>
 <h1>My bookings</h1>
-
 <div class="container">
   <ul class = 'list-group'>
     <% @bookings.each do |booking| %>
       <li class = 'list-group-item'><%= booking.subject.title %>
+      <%# <% "%Y-%M-%D " %>
+      <%= booking.start_time.strftime("%H:%M") %>
+      <%= booking.end_time.strftime("%H:%M") %>
+      <%= booking.subject.grade %>
       <%= link_to "edit", edit_booking_path(booking) %>
       </li>
     <% end %>
