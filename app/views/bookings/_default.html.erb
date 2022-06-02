@@ -1,0 +1,10 @@
+<h1>My bookings</h1>
+
+<div class="container">
+  <ul class = 'list-group'>
+    <% @bookings.each do |booking| %>
+      <li class = 'list-group-item'><%= booking.subject.title %>
+      </li>
+    <% end %>
+  </ul>
+</div>
