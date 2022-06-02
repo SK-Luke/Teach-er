@@ -29,8 +29,6 @@ class Availability < ApplicationRecord
           new_avail(date, schedule_hash)
         end
       end
-
-      destroy
     else # if availability entered is only for 1 day
       day_start_time = day_start_time(schedule_hash, start_time)
       day_end_time = day_end_time(schedule_hash, end_time)
@@ -40,6 +38,7 @@ class Availability < ApplicationRecord
 
       split_into_hour_inst(new_start_time, new_end_time)
     end
+    destroy
   end
 
   # method checks if start entry is before working hours and creates the days instance accordingly
@@ -78,21 +77,22 @@ class Availability < ApplicationRecord
     split_into_hour_inst(new_start_time, new_end_time)
   end
 
-  def split_into_hour_inst(start_time, end_time)
+  def split_into_hour_inst(the_start_time, the_end_time)
     # new_avail = Availability.new(
-    #   start_time: start_time,
-    #   end_time: end_time
+    #   start_time: the_start_time,
+    #   end_time: the_end_time
     # )
     # new_avail.user = user
     # new_avail.save!
-    while start_time < end_time
+    while the_start_time < the_end_time
       new_avail = Availability.new(
-        start_time: start_time,
-        end_time: start_time + 3600
+        start_time: the_start_time,
+        end_time: the_start_time + 1.hours
       )
       new_avail.user = user
-      new_avail.save!
-      start_time += 3600 # increment by 1 hour
+      new_avail.save! unless new_avail.end_time - new_avail.start_time < 1.hours
+
+      the_start_time += 1.hours # increment by 1 hour
     end
   end
 

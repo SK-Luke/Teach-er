@@ -10,6 +10,8 @@ class AvailabilitiesController < ApplicationController
     @new_availability.user = current_user
 
     if @new_availability.save
+      schedule = Schedule.last
+      @new_availability.split(schedule.week)
       redirect_to '/schedules'
     else
       @schedule = Schedule.new
