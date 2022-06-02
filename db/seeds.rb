@@ -21,9 +21,20 @@ contents = ["They/Them pretty good!", "We blazed", "Good tutor, will come back a
 # Just playing
 num = 143596825983245
 
+# Destory all Database
+puts "Clearing database..."
+User.destroy_all
+Subject.destroy_all
+Booking.destroy_all
+Review.destroy_all
+Schedules.destroy_all
+Availabilities.destroy_all
+
 puts "Seeding your shit"
 puts "Go get a drink, its gonna take years"
-100.times do
+
+# Create users 
+20.times do
   new_user = User.new(
     username: Faker::Name.name,
     email: Faker::Internet.email,
