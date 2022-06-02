@@ -1,8 +1,17 @@
 class BookingsController < ApplicationController
   before_action :select_booking, only: %i[show edit update destroy]
 
+  # For students, push booking into user.bookings (stored as array)
+  # Example for bookOne as a booking, to store for students,
+  # user.bookings << booking
+  # For teachers, just assign booking.user = Teachers
+  # So for teachers, bookOne.user = teacher/user
   def index
-    @bookings = Booking.where(user: current_user)
+    @bookings = []
+    all = Booking.all
+    all.each do |booking|
+      @bookings << booking if current_user.subject_ids.include? booking.subject.id
+    end
   end
 
   def show
@@ -40,8 +49,7 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
   end
 
-  def subject_params
-    # params[:subject][:grade].shift
-    # params.require(:booking).permit(:title, :description, :hourly_rate, grade: [])
+  def booking_params
+    params.require(:booking).permit(:status)
   end
 end

@@ -1,0 +1,11 @@
+<h1>My bookings</h1>
+
+<div class="container">
+  <ul class = 'list-group'>
+    <% @bookings.each do |booking| %>
+      <li class = 'list-group-item'><%= booking.subject.title %>
+      <%= link_to "edit", edit_booking_path(booking) %>
+      </li>
+    <% end %>
+  </ul>
+</div>
