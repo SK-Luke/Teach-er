@@ -17,21 +17,19 @@ class BookingsController < ApplicationController
   def show
   end
 
-  def new
+  def create
     @booking = Booking.new
     @user = current_user
-    @subject = Subject.last
+    @teacher = @subject.user
+
+    @booking.save
+    redirect_to confirmation_bookings_path(@booking)
   end
 
-  def create
-    @booking = Booking.new(booking_params)
-    @booking.save
-    redirect_to bookings_path(@booking)
-  end
+#  start_time, :end_time, :user_id, :subject_id)
 
   def destroy
     @booking.destroy
-
     redirect_to bookings_path(@booking)
   end
 
@@ -41,7 +39,6 @@ class BookingsController < ApplicationController
 
   def update
     @booking.update(booking_params)
-
     redirect_to bookings_path(@booking)
   end
 
@@ -50,8 +47,14 @@ class BookingsController < ApplicationController
   def select_booking
     @booking = Booking.find(params[:id])
   end
-
-  def booking_params
-    params.require(:booking).permit(:status)
-  end
 end
+
+# t.datetime "start_time"
+# t.datetime "end_time"
+# t.datetime "created_at", precision: 6, null: false
+# t.datetime "updated_at", precision: 6, null: false
+# t.bigint "user_id", null: false
+# t.bigint "subject_id", null: false
+# t.string "status", default: "pending"
+# t.index ["subject_id"], name: "index_bookings_on_subject_id"
+# t.index ["user_id"], name: "index_bookings_on_user_id"
