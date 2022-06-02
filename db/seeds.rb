@@ -33,50 +33,54 @@ Availabilities.destroy_all
 puts "Seeding your shit"
 puts "Go get a drink, its gonna take years"
 
-# Create users 
+# Create Student users 
 20.times do
   new_user = User.new(
-    username: Faker::Name.name,
     email: Faker::Internet.email,
-    contact_number: "#{contact_num.sample}",
+    username: Faker::Name.name,
     location: "#{location.sample}",
     description: "From #{Faker::Educator.secondary_school} seeking tuition for #{subject.sample}",
     role: "Student",
+    contact_number: "#{contact_num.sample}",
     password: "password"
   )
   new_user.save!
   puts "1 down, #{num -= 1} more to go!"
 end
 
-50.times do
+# Create Teacher users
+5.times do
   locate = location.sample
   subs = subject.sample
   new_user = User.new(
-    username: Faker::Name.name,
     email: Faker::Internet.email,
-    contact_number: "#{contact_num.sample}",
+    username: Faker::Name.name,
     location: "#{locate}",
     description: "From #{Faker::Educator.university} teaching #{subject.sample}",
-    role: "Student",
+    role: "Teacher",
+    contact_number: "#{contact_num.sample}",
     password: "password"
   )
   new_user.save!
 
   # Seed for subjects
   count = 0
-  num = (101..151).to_a.sample
+  all_user = User.all.count
+  choose_id= (1..all_user).to_a.sample
   new_subject = Subject.new(
     name: "#{subs}",
     grade: "#{grade.sample}",
-    user_id: "#{num}".to_i,
+    booking_id: "#{count += 1}".to_i
     description: "Much #{subs} very wow",
     hourly_rate: Faker::Number.number(digits: 10).round,
-    # booking_id: "#{count += 1}".to_i
+    user_id: "#{choose_id}"
   )
   new_subject.save!
 
   new_booking = Booking.new(
-    subject_id: "#{count += 1}".to_i
+    user_id: "#{count += 1}".to_i
+    start_datetime: Time.now
+    end_datetime: Time.now + 1
   )
   puts "1 down, #{num -= 1} more to go!"
 end

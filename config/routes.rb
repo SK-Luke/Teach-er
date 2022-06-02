@@ -15,16 +15,5 @@ Rails.application.routes.draw do
   # For student, booking routes shld be nested under teachers availability page
   resources :bookings, only: %i[index new create edit update]
   resources :subjects
-<<<<<<< HEAD
   resources :users, only: [:show]
-=======
-  resources :pages, only: [:show, :home]
-
-  # User has many subjects
-  # User has many bookings
-  # subject belongs to user
-  # Subject has many bookings
-  # Booking belongs to user
-  # Booking has one subject
->>>>>>> master
 end
