@@ -60,6 +60,10 @@
   <div class="container right-container">
     <h2>Availabilities</h2>
   </div>
-
+  <%= simple_form_for(@booking) do |f| %>
+    <%= f.input :subject, collection: ["Maths"], prompt: 'Select subject', label: false, input_html: { multiple: false} %>
+    <%= f.input :start_time, collection: ["Thu, 02 Jun 2022 08:53:25.928509000 UTC +00:00 to Thu, 02 Jun 2022 08:53:26.928509000 UTC +00:00"], prompt: 'Select time slot', label: false, input_html: { multiple: false } %>
+    <%= f.submit "Book class", class: "btn btn-primary" %>
+  <% end %>
   <%# <%= link_to "book", new_user_booking_path(current_user.id) %>
 </div>
