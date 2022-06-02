@@ -27,7 +27,7 @@
                 <div class="teacherCard-bottom mt-4">
                   <div class="teacherCard-teaches mb-2">
                     <span>
-                      Teaches: 
+                      Teaches:
                       <% @user.subjects.each do |subject| %>
                         <%= subject.title %>
                       <% end %>
@@ -57,11 +57,9 @@
           <div class="card teacherCard-description">
             <div class="card-body description">
               <h3>Description</h3>
-                <% @user.reviews.each do |review| %>
               <p>
-                <%= review.content %>
+                <%= @user.description %>
               </p>
-                <% end %>
             </div>
           </div>
         </div>
@@ -84,6 +82,7 @@
       Reviews
     <% end %>
   </span>
+
   <span class="first_span"><i class="bi bi-star-fill"></i></span>
   <span><i class="bi bi-star-fill"></i></span>
   <span><i class="bi bi-star-fill"></i></span>
