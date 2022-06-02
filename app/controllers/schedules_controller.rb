@@ -2,13 +2,25 @@ class SchedulesController < ApplicationController
   # before_action :set_schedule, only: [:show, :edit, :update, :destroy]
 
   def create
-    @schedule = schedule.new(schedule_params)
+    @schedule = Schedule.new(schedule_params)
     @schedule.user = current_user
     if @schedule.save
-      redirect_to schedule_path(@schedule)
+      redirect_to '/schedules'
     else
-      render :new
+      render :index
     end
+  end
+
+  def index
+    # This section is for the calendar view
+    start_date = params.fetch(:start_date, Date.today).to_date
+    @availability_slot = Availability.where(start_time: start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week)
+
+    # This section is for adding a new availability
+    @new_availability = Availability.new
+
+    # This section is for adding a new schedule
+    @schedule = Schedule.new
   end
 
   # def new
@@ -34,7 +46,6 @@ class SchedulesController < ApplicationController
   # def reviews
   #   @review = @schedule.reviews
   # end
-
   private
 
   def schedule_params
@@ -44,4 +55,6 @@ class SchedulesController < ApplicationController
   # def set_schedule
   #   @schedule = schedule.find(params[:id])
   # end
+
+
 end
