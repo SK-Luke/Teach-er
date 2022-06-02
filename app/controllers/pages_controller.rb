@@ -4,10 +4,11 @@ class PagesController < ApplicationController
   end
 
   def show
+    # raise
     @user = user_id()
   end
 
-  private 
+  private
   def user_id
     @user = User.find(params[:id])
   end
