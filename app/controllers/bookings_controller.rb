@@ -18,6 +18,7 @@ class BookingsController < ApplicationController
   end
 
   def new
+    # We will need to reassign the subject grades to only the grades that are being selected
     @booking = Booking.new
   end
 
