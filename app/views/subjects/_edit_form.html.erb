@@ -1,0 +1,8 @@
+<%= simple_form_for @subject do |f| %>
+  <%= f.input :title, collection: Subject::SUBJECTS, selected: @subject.title %>
+  <%= f.input :description %>
+  <%= f.input :hourly_rate %>
+  <%= f.input :grade, collection: Subject::GRADES, as: :check_boxes, multiple: true%>
+  <%= f.submit class: "btn btn-primary" %>
+  <%= link_to 'Stop editing', subjects_path %>
+<% end %>

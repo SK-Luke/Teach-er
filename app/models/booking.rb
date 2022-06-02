@@ -1,6 +1,6 @@
 class Booking < ApplicationRecord
-  has_one :subject
+  belongs_to :subject
   belongs_to :user
 
-  validates :start_datetime, :end_datetime, presence: true
+  validates :start_time, :end_time, presence: true
 end
