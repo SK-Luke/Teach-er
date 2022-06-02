@@ -1,0 +1,5 @@
+<%= simple_form_for @booking do |f| %>
+  <%= f.input :status, collection: Booking::STATUS, as: :radio_buttons%>
+  <%= f.submit class: "btn btn-primary" %>
+  <%= link_to 'Stop editing', bookings_path %>
+<% end %>

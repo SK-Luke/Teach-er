@@ -49,8 +49,7 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
   end
 
-  def subject_params
-    # params[:subject][:grade].shift
-    # params.require(:booking).permit(:title, :description, :hourly_rate, grade: [])
+  def booking_params
+    params.require(:booking).permit(:status)
   end
 end
