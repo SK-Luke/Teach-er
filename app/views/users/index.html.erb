@@ -3,66 +3,66 @@
 
     <% @users.each do |user| %>
     <div class="col-6">
-      <div class="teacher-main" style="border:1px solid rgb(190,190,190); border-radius: 12px; padding: 1rem; background-color: white; display: flex;">
+      <%= link_to user do %>
+        <div class="teacher-main" style="border:1px solid rgb(190,190,190); border-radius: 12px; padding: 1rem; background-color: white; display: flex;">
 
-        <%# Teacher card left %>
-        <div class="teacherCard-left">
+          <%# Teacher card left %>
+          <div class="teacherCard-left">
 
-          <div class="avatar"></div>
+            <div class="avatar"></div>
 
-          <div class="teacherCard-body">
+            <div class="teacherCard-body">
 
-            <div class="teacherCard-top">
-              <div class="teacherCard-middle">
+              <div class="teacherCard-top">
+                <div class="teacherCard-middle">
 
-                <div class="teacherCard-name">
-                  <%= user.username %>
+                  <div class="teacherCard-name">
+                    <%= user.username %>
+                  </div>
+
+                  <div class="teacherCard-info">
+                    <span>Professional Teacher</span>
+                  </div>
+
+                  <div>
+                    <span>From Singapore</span>
+                  </div>
+
                 </div>
-
-                <div class="teacherCard-info">
-                  <span>Professional Teacher</span>
-                </div>
-
-                <div>
-                  <span>From Singapore</span>
-                </div>
-
               </div>
+
+              <div class="teacherCard-bottom mt-4">
+                <div class="teacherCard-teaches mb-2"><span>Teaches: English, Maths</span></div>
+                <div class="teacherCard-speaks"><span>Speaks: English</span></div>
+              </div>
+
+            </div>
+          </div>
+
+          <%# Teacher card right %>
+          <div class="teacherCard-right mt-4">
+            <div class=star-ratings>
+              <span><i class="bi bi-star-fill"></i></span>
+              <span><i class="bi bi-star-fill"></i></span>
+              <span><i class="bi bi-star-fill"></i></span>
+              <span><i class="bi bi-star-fill"></i></span>
+              <span><i class="bi bi-star-fill"></i></span>
+              <span></span>
             </div>
 
-            <div class="teacherCard-bottom mt-4">
-              <div class="teacherCard-teaches mb-2"><span>Teaches: English, Maths</span></div>
-              <div class="teacherCard-speaks"><span>Speaks: English</span></div>
+            <div class=students>
+              <span>32 Students</span>
+            </div>
+
+            <div class=lessons>
+              <span>71 Lessons</span>
             </div>
 
           </div>
         </div>
-
-        <%# Teacher card right %>
-        <div class="teacherCard-right mt-4">
-          <div class=star-ratings>
-            <span><i class="bi bi-star-fill"></i></span>
-            <span><i class="bi bi-star-fill"></i></span>
-            <span><i class="bi bi-star-fill"></i></span>
-            <span><i class="bi bi-star-fill"></i></span>
-            <span><i class="bi bi-star-fill"></i></span>
-            <span></span>
-          </div>
-
-          <div class=students>
-            <span>32 Students</span>
-          </div>
-
-          <div class=lessons>
-            <span>71 Lessons</span>
-          </div>
-
-        </div>
-      </div>
+      <% end %>
     </div>
     <% end %>
 
   </div>
 </div>
-
-
