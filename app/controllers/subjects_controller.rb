@@ -2,7 +2,7 @@ class SubjectsController < ApplicationController
   before_action :select_subject, only: %i[show edit update destroy]
 
   def index
-    @subjects = Subject.all
+    @subjects = Subject.where(user: current_user)
     @subject = Subject.new
   end
 
