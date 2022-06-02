@@ -2,7 +2,7 @@ class SubjectsController < ApplicationController
   before_action :select_subject, only: %i[show edit update destroy]
 
   def index
-    @subjects = Subject.all
+    @subjects = Subject.where(user: current_user)
     @subject = Subject.new
   end
 
@@ -15,20 +15,19 @@ class SubjectsController < ApplicationController
 
   def create
     @subject = Subject.new(subject_params)
-    @subject.grade << params["subject"][:grade]
     @subject.user = current_user
     @subject.save
-
     redirect_to subjects_path(@subject)
   end
 
   def destroy
     @subject.destroy
 
-    redirect_to subjects_path
+    redirect_to subjects_path(@subject)
   end
 
   def edit
+    @subjects = Subject.all
   end
 
   def update
@@ -44,6 +43,7 @@ class SubjectsController < ApplicationController
   end
 
   def subject_params
-    params.require(:subject).permit(:title, :description, :hourly_rate, :grade)
+    params[:subject][:grade].shift
+    params.require(:subject).permit(:title, :description, :hourly_rate, grade: [])
   end
 end

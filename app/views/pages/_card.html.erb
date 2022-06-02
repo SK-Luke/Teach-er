@@ -1,9 +1,3 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-
-  <div class="row">
-    <div class="container left-container">
-<% @users.each do |user| %>
       <div class="teacher">
         <div class="teacher_main">
           <div class="teacherCard card p-2">
@@ -14,7 +8,7 @@
                 <div class="teacherCard-top">
                   <div class="teacherCard-middle">
                     <div class="teacherCard-name">
-                      <%= user.username %>
+                      <%= @user.username %>
                     </div>
                     <div class="teacherCard-info">
                     <div>
@@ -49,9 +43,3 @@
               </div>
             </div>
           </div>
-        </div>
-<% end %>
-      </div>
-    </div>
-
-

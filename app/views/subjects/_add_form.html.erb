@@ -1,0 +1,13 @@
+
+<div class="container" >
+  <h3>Add a subject</h3>
+  <%= simple_form_for @subject do |f| %>
+    <%= f.input :title, collection: Subject::SUBJECTS%>
+    <%= f.input :description %>
+    <%= f.input :hourly_rate %>
+    <div class="grades" data-controller="grades">
+      <%= f.input :grade, collection: Subject::GRADES, as: :check_boxes, multiple: true%>
+    </div>
+    <%= f.submit class: "btn btn-primary" %>
+  <% end %>
+</div>
