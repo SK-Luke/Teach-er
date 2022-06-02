@@ -23,12 +23,12 @@ num = 143596825983245
 
 # Destory all Database
 puts "Clearing database..."
-User.destroy_all
-Subject.destroy_all
 Booking.destroy_all
 Review.destroy_all
-# Schedules.destroy_all
+Subject.destroy_all
 Availability.destroy_all
+User.destroy_all
+# Schedules.destroy_all
 
 puts "Seeding your shit"
 puts "Go get a drink, its gonna take years"
@@ -99,13 +99,16 @@ puts "Creating Bookings"
 end
 
 # Seed for review400 - 405
-# 10.times do
-#   new_review = Review.new (
-#     content: "#{contents.sample}",
-#     rating: (1..5).to_a
-#   )
-#   new_review.save!
-# end
+puts "Creating Reviews"
+5.times do
+  student = User.where(role: 'Student').sample
+  new_review = Review.new(
+    content: contents.sample,
+    rating: (1..5).to_a.sample,
+    user: student
+  )
+  new_review.save!
+end
 
 puts "Finished, now get back to work!!"
 puts "jk, love you <3"
