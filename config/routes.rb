@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   # For student, booking routes shld be nested under teachers availability page
   resources :bookings, only: %i[index edit update]
   resources :subjects
-  resources :users, only: %i[index] do
+  resources :users, only: %i[index show] do
     resources :bookings, only: %i[new create]
   end
 
