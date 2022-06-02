@@ -5,6 +5,7 @@
         <div class="teacher_main">
           <div class="teacherCard card p-2">
             <div class="teacherCard-left">
+            <%# Add Avatar here %>
               <div class="avatar">
               </div>
               <div class="teacherCard-body">
@@ -15,16 +16,23 @@
                     </div>
                     <div class="teacherCard-info">
                     <div>
-                      <span>Professional Teacher</span>
+                      <span><%= @user.role %></span>
                     </div>
                     <div>
-                      <span>From Singapore</span>
+                      <span>From <%= @user.location %>, Singapore</span>
                     </div>
                     </div>
                   </div>
                 </div>
                 <div class="teacherCard-bottom mt-4">
-                  <div class="teacherCard-teaches mb-2"><span>Teaches: English, Maths</span></div>
+                  <div class="teacherCard-teaches mb-2">
+                    <span>
+                      Teaches:
+                      <% @user.subjects.each do |subject| %>
+                        <%= subject.title %>
+                      <% end %>
+                    </span>
+                  </div>
                   <div class="teacherCard-speaks"><span>Speaks: English</span></div>
                 </div>
               </div>
@@ -36,36 +44,64 @@
                 <span><i class="bi bi-star-fill"></i></span>
                 <span><i class="bi bi-star-fill"></i></span>
                 <span><i class="bi bi-star-fill"></i></span>
-                <span></span>
               </div>
               <div class=students>
-                <span>32 Students</span>
               </div>
               <div class=lessons>
-                <span>71 Lessons</span>
+                <span>
+                  <%= @user.bookings.count %> Lessons
+                </span>
               </div>
             </div>
           </div>
           <div class="card teacherCard-description">
             <div class="card-body description">
               <h3>Description</h3>
-<<<<<<< HEAD
               <p>
-                <%= @user.description    %>
+                <%= @user.description %>
               </p>
-=======
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit esse minus consequatur neque sit dolor laudantium facilis tempore nobis, molestiae in repudiandae non doloribus dicta dolorem deserunt? Quod, nesciunt eos.</p>
->>>>>>> master
             </div>
           </div>
         </div>
       </div>
     </div>
-  <div class="container right-container">
+  <div class="container right-container ">
+    <hr class="right-container-hr">
     <h2>Availabilities</h2>
+      <div class="calender">For the calender</div>
   </div>
-<<<<<<< HEAD
 </div>
-=======
+<hr>
+<div class="container">
+  <span> 
+    <%= @user.reviews.count %> 
+    
+    <% if @user.reviews.count == 1 %>
+      Review
+    <% else %>
+      Reviews
+    <% end %>
+  </span>
+
+  <span class="first_span"><i class="bi bi-star-fill"></i></span>
+  <span><i class="bi bi-star-fill"></i></span>
+  <span><i class="bi bi-star-fill"></i></span>
+  <span><i class="bi bi-star-fill"></i></span>
+  <span><i class="bi bi-star-fill"></i></span>
+  <div class="reviews">
+    <% @user.reviews.each do |review| %>
+      <div class="review-card">
+        <% review.rating.times do %>
+          <span><i class="bi bi-star-fill text-yellow"></i></span>
+        <% end %>
+        <% (5-review.rating).times do %>
+          <span><i class="bi bi-star-fill"></i></span>
+        <% end %>
+        <span>Posted</span>
+        <span><%= review.created_at %></span>
+      </div>
+      <%= review.content %>
+    <% end %>
+  </div>
 </div>
->>>>>>> master
+

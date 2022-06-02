@@ -66,22 +66,25 @@ puts "Creating Teachers"
   new_user.save!
 end
 
-puts "Creating Subjects"
-5.times do
   # Seed for subjects
+puts "Creating Subjects"
+all_users = User.all
+all_users.each do |user|
   subs = Subject::TITLES.sample
+  teacher = User.where("role = 'Teacher'").sample
   # all_user = User.all.count
-  choose_user = User.all.sample
+  # choose_user = User.all.sample
   new_subject = Subject.new(
     grade: [grade.sample],
     description: "Much #{subs} very wow",
     hourly_rate: Faker::Number.number(digits: 10).round,
-    user: choose_user,
+    user: user,
     title: subs
     # booking_id: "#{count += 1}"
-  )
+)
   new_subject.save!
 end
+
   #Seed for bookings
 puts "Creating Bookings"
 5.times do
