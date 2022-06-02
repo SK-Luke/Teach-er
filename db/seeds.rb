@@ -13,7 +13,7 @@ location = ["Jurong", "Tampines", "Yishun", "Labrador", "Raffles Place"]
 # Either have number of no number
 contact_num = ["+65 #{random.sample}#{Faker::Number.number(digits: 7)}", ""]
 # Description
-subject = ["English", "Maths", "Science", "History", "Geography", "Social Studies", "Arts", "A-Math", "Mother Tongue"]
+subject = Subject::TITLES
 # grade
 grade = ["Secondary-1", "Secondary-2", "Secondary-3", "Secondary-4/5"]
 # Content
@@ -27,14 +27,15 @@ User.destroy_all
 Subject.destroy_all
 Booking.destroy_all
 Review.destroy_all
-Schedules.destroy_all
-Availabilities.destroy_all
+# Schedules.destroy_all
+Availability.destroy_all
 
 puts "Seeding your shit"
 puts "Go get a drink, its gonna take years"
 
 # Create Student users 
-20.times do
+puts "Creating Users"
+5.times do
   new_user = User.new(
     email: Faker::Internet.email,
     username: Faker::Name.name,
@@ -45,10 +46,11 @@ puts "Go get a drink, its gonna take years"
     password: "password"
   )
   new_user.save!
-  puts "1 down, #{num -= 1} more to go!"
+  # puts "1 down, #{num -= 1} more to go!"
 end
 
-# Create Teacher users
+# # Create Teacher users
+puts "Creating Teachers"
 5.times do
   locate = location.sample
   subs = subject.sample
@@ -62,45 +64,52 @@ end
     password: "password"
   )
   new_user.save!
+end
 
+puts "Creating Subjects"
+5.times do
   # Seed for subjects
-  count = 0
-  all_user = User.all.count
-  choose_id= (1..all_user).to_a.sample
+  subs = Subject::TITLES.sample
+  # all_user = User.all.count
+  choose_user = User.all.sample
   new_subject = Subject.new(
-    name: "#{subs}",
-    grade: "#{grade.sample}",
-    booking_id: "#{count += 1}".to_i
+    grade: [grade.sample],
     description: "Much #{subs} very wow",
     hourly_rate: Faker::Number.number(digits: 10).round,
-    user_id: "#{choose_id}"
+    user: choose_user,
+    title: subs
+    # booking_id: "#{count += 1}"
   )
   new_subject.save!
-
-  new_booking = Booking.new(
-    user_id: "#{count += 1}".to_i
-    start_datetime: Time.now
-    end_datetime: Time.now + 1
-  )
-  puts "1 down, #{num -= 1} more to go!"
+end
+  #Seed for bookings
+puts "Creating Bookings"
+5.times do
+  # count = 0
+  subject = Subject.all.sample
+  student = User.where("role = 'Student'").sample
+    new_booking = Booking.new(
+      start_time: Time.now,
+      end_time: Time.now + 1,
+      user: student,
+      subject: subject
+    )
+    # puts "1 down, #{num -= 1} more to go!"
+    new_booking.save!
 end
 
-# Seed for review
-10.times do
-  content: "#{contents.sample}"
-  rating: (1..5).to_a
-end
+# Seed for review400 - 405
+# 10.times do
+#   new_review = Review.new (
+#     content: "#{contents.sample}",
+#     rating: (1..5).to_a
+#   )
+#   new_review.save!
+# end
 
 puts "Finished, now get back to work!!"
 puts "jk, love you <3"
 
-# create_table "bookings", force: :cascade do |t|
-#   t.datetime "start_datetime"
-#   t.datetime "end_datetime"
-#   t.boolean "confirmed", default: false
-#   t.datetime "created_at", precision: 6, null: false
-#   t.datetime "updated_at", precision: 6, null: false
-# end
 
 
 
