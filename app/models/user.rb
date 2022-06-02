@@ -13,4 +13,13 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+
+  def student?
+    self.role == "Student"
+  end
+
+  def teacher?
+    self.role == "teacher"
+  end
 end
