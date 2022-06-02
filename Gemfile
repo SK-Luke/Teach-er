@@ -23,8 +23,7 @@ gem 'turbolinks', '~> 5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
-gem 'dotenv-rails', groups: [:development, :test]
-
+gem 'cloudinary', '~> 1.16.0'
 
 gem "simple_calendar", "~> 2.4"
 # Use Active Storage variant
