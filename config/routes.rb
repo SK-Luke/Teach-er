@@ -12,5 +12,5 @@ Rails.application.routes.draw do
   # On teachers subject, I can delete my subjects (destroy)
   # filepath will be
   resources :subjects
-  resources :pages, only: [:show, :home]
+  resources :users, only: [:show]
 end
