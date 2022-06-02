@@ -19,6 +19,8 @@ class BookingsController < ApplicationController
 
   def new
     @booking = Booking.new
+    @user = current_user
+    @subject = Subject.last
   end
 
   def create
