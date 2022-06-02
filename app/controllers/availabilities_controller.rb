@@ -6,13 +6,14 @@ class AvailabilitiesController < ApplicationController
   # end
 
   def create
-    @availability = Availability.new(availability_params)
-    @availability.user = current_user
+    @new_availability = Availability.new(availability_params)
+    @new_availability.user = current_user
 
-    if @availability.save
-      redirect_to '/calendar'
+    if @new_availability.save
+      redirect_to '/schedules'
     else
-      render 'pages/calendar'
+      @schedule = Schedule.new
+      render 'schedules/index'
     end
   end
 
