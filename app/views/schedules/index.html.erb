@@ -41,6 +41,8 @@
 
         <% if @users_schedule %>
           <p><%= @users_schedule.week %></p>
+          <% <%= @users_schedule.week.each do |key, value| %>
+          <% end %>
         <% else %>
           <h3>Set your weekly schedule</h3>
           <div class="container px-0">
