@@ -21,17 +21,18 @@ contents = ["They/Them pretty good!", "We blazed", "Good tutor, will come back a
 num = 143596825983245
 # Destory all Database
 puts "Clearing database..."
-# Booking.destroy_all
-# Review.destroy_all
-# Subject.destroy_all
-# Availability.destroy_all
-# User.destroy_all
-# Schedules.destroy_all
+Booking.destroy_all
+Review.destroy_all
+Subject.destroy_all
+Availability.destroy_all
+User.destroy_all
+Schedule.destroy_all
 puts "Seeding your shit"
 puts "Go get a drink, its gonna take years"
+
 # Create Student users
-puts "Creating Users"
-5.times do
+puts "Creating Students"
+30.times do
   new_user = User.new(
     email: Faker::Internet.email,
     username: Faker::Name.name,
@@ -46,7 +47,7 @@ puts "Creating Users"
 end
 # # Create Teacher users
 puts "Creating Teachers"
-5.times do
+25.times do
   locate = location.sample
   subs = subject.sample
   new_user = User.new(
@@ -74,7 +75,6 @@ all_users.each do |user|
     hourly_rate: Faker::Number.number(digits: 10).round,
     user: user,
     title: subs
-    # booking_id: "#{count += 1}"
 )
   new_subject.save!
 end

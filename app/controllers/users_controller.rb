@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @avgRating = avgRating(@users)
+    @subjects = subjects(@users)
   end
 
   def show
@@ -26,7 +27,7 @@ class UsersController < ApplicationController
   def avgRating(users)
     sum_reviews = 0
     total_reviews = 0
-
+    
     users.each do |user|
       user.reviews.each do |review|
         sum_reviews += review.rating
@@ -34,5 +35,11 @@ class UsersController < ApplicationController
       end
     end
     (sum_reviews.to_f / total_reviews).round
+  end
+
+  def subjects(users)
+    users.each do |user|
+      
+    end
   end
 end
