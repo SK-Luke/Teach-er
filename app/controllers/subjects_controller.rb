@@ -17,23 +17,23 @@ class SubjectsController < ApplicationController
     @subject = Subject.new(subject_params)
     @subject.user = current_user
     @subject.save
-    redirect_to subjects_path(@subject)
+    redirect_to subjects_path
   end
 
   def destroy
     @subject.destroy
 
-    redirect_to subjects_path(@subject)
+    redirect_to subjects_path
   end
 
   def edit
-    @subjects = Subject.all
+    @subjects = Subject.where(user: current_user)
   end
 
   def update
     @subject.update(subject_params)
 
-    redirect_to subjects_path(@subject)
+    redirect_to subjects_path
   end
 
   private

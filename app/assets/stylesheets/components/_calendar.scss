@@ -7,11 +7,11 @@
   }
 }
 
-.availability {
+.available {
   color: white;
   padding: 4px 4px;
   border-radius: 4px;
-  background: #1EDD88;
+  background: #5bc48c;
   transition: background 0.3s ease;
   font-size: 12px;
 
@@ -20,7 +20,25 @@
   }
 }
 
-.availability:hover {
-  background: #1BCB7F;
+.booking {
+  color: white;
+  padding: 4px 4px;
+  border-radius: 4px;
+  background: #bc3535;
+  transition: background 0.3s ease;
+  font-size: 12px;
+
+  p {
+    margin: 0px;
+  }
+}
+
+.available:hover {
+  background: #53b480;
+  color: white;
+}
+
+.booking:hover {
+  background: #a52f2f;
   color: white;
 }
