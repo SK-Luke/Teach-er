@@ -9,8 +9,14 @@ class BookingsController < ApplicationController
   def index
     @bookings = []
     all = Booking.all
-    all.each do |booking|
-      @bookings << booking if current_user.subject_ids.include? booking.subject.id
+    if current_user == "Teacher"
+      all.each do |booking|
+        @bookings << booking if current_user.subject_ids.include? booking.subject.id
+    elsif current_user == "Student"
+      all.each do |booking|
+        @bookings << booking if (current_user.id == booking.user_id)
+      end
+    end
     end
   end
 
