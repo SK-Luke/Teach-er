@@ -17,7 +17,7 @@ subject = Subject::SUBJECTS
 # grade
 grade = ["Secondary-1", "Secondary-2", "Secondary-3", "Secondary-4/5"]
 # Content
-contents = ["They/Them pretty good!", "We blazed", "Good tutor, will come back again!", "Shit tutor, don't go for this person"]
+contents = ["They/Them pretty good!", "We blazed", "Good tutor, will come back again!", "Shit tutor, don't go for this person", "#{Faker::Quotes::Shakespeare.as_you_like_it_quote}"]
 # Just playing
 num = 143596825983245
 
@@ -103,12 +103,13 @@ end
 
 # Seed for review400 - 405
 puts "Creating Reviews"
-5.times do
-  student = User.where(role: 'Student').sample
+all_users = User.all.count
+all_users.times do
+  # student = User.where(role: 'Student').sample
   new_review = Review.new(
     content: contents.sample,
     rating: (1..5).to_a.sample,
-    user: student
+    user: user
   )
   new_review.save!
 end

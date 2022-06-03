@@ -29,6 +29,7 @@
     </div>
     <div class="col-4">
       <div class="form-wrapper" style="width: 400px; margin: 0 auto;">
+
         <h3>Add an Availability</h3>
 
         <%= simple_form_for(@new_availability) do |f| %>
@@ -37,7 +38,13 @@
           <%= f.submit "Add availability", class: "btn btn-flat mb-3" %>
         <% end %>
         <hr>
-        <h3>Set your weekly schedule</h3>
+
+        <% if @users_schedule %>
+          <p><%= @users_schedule.week %></p>
+          <% <%= @users_schedule.week.each do |key, value| %>
+          <% end %>
+        <% else %>
+          <h3>Set your weekly schedule</h3>
           <div class="container px-0">
             <%= simple_form_for(@schedule) do |f| %>
               <div class="schedule row align-items-center">
@@ -54,6 +61,7 @@
               <%= f.submit "Set Schedule", class: "btn btn-flat mb-3" %>
             <% end %>
           </div>
+        <% end %>
         </div>
       </div>
     </div>
