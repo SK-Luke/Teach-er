@@ -20,14 +20,19 @@ class BookingsController < ApplicationController
   def create
     @user = current_user
     @subject = booking_params[:subject]
-    @start_time = booking_params[:subject]
+    @start_time = booking_params[:start_time]
 
     # to be added by Wan Xin
     # @end_time =
     # @grade =
 
     # @booking = Booking.create()
-    redirect_to confirmation_bookings_path(@booking)
+    redirect_to confirmation_booking_path(@booking)
+  end
+
+  def confirmation
+    # raise
+    @booking = Booking.find(params[:id])
   end
 
   def destroy
