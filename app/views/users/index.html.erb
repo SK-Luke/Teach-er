@@ -3,8 +3,8 @@
 
     <% @users.each do |user| %>
       <% if user.role == 'Teacher' %>
-        <%= link_to user do %>
           <div class="col-6">
+        <%= link_to user do %>
             <div class="teacher-main" style="border:1px solid rgb(190,190,190); border-radius: 12px; padding: 1rem; background-color: white; display: flex;">
 
             <%# Teacher card left %>
@@ -58,8 +58,8 @@
 
         </div>
       </div>
-    </div>
         <% end %>
+    </div>
       <% end %>
     <% end %>
   </div>
