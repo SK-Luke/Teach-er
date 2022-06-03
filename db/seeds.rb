@@ -88,7 +88,8 @@ puts "Creating Bookings"
       start_time: Time.now,
       end_time: Time.now + 1,
       student: student,
-      subject: subject
+      subject: subject,
+      grade: grade.sample
     )
     # puts "1 down, #{num -= 1} more to go!"
     new_booking.save!
