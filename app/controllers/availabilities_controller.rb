@@ -14,6 +14,8 @@ class AvailabilitiesController < ApplicationController
       @new_availability.split(schedule.week)
       redirect_to '/schedules'
     else
+      start_date = params.fetch(:start_date, Date.today).to_date
+      @availability_slot = Availability.where(start_time: start_date.beginning_of_week..start_date.end_of_week)
       @schedule = Schedule.new
       render 'schedules/index'
     end
