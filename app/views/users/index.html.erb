@@ -1,9 +1,9 @@
 <div class="container main-container">
   <div class="row g-5">
     <% @users.each do |user| %>
-    <div class="col-6">
+    <div class="col-4">
       <%= link_to user do %>
-        <div class="teacher-main" style="border:1px solid rgb(190,190,190); border-radius: 12px; padding: 1rem; background-color: white; display: flex;">
+        <div class="teacher-main shadow-sm" style="border-radius: 8px; padding: 8px; background-color: white; display: flex;">
 
           <%# Teacher card left %>
           <div class="teacherCard-left">
