@@ -15,13 +15,7 @@ export default class extends Controller {
     const time = time_range.match(/\d{2}:\d{2}/)[0];
     const selected_datetime = `${date} ${time}`
     console.log(`${date} ${time}`)
-    //console.log(this.inputTarget);
-    //console.log(this.timeTarget);
-    //var date = document.getElementById("time");
-    //console.log(date.innerText);
     var date_input = document.getElementById("booking_start_time");
-    //console.log(date_input);
-    // console.log(date_input.value);
     date_input.value = selected_datetime
   }
 }
