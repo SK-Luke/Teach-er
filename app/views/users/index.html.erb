@@ -7,37 +7,27 @@
 
           <%# Teacher card left %>
           <div class="teacherCard-left">
-
             <div class="avatar"></div>
-
             <div class="teacherCard-body">
-
               <div class="teacherCard-top">
                 <div class="teacherCard-middle">
-
                   <div class="teacherCard-name">
                     <%= user.username %>
                   </div>
-
                   <div class="teacherCard-info">
                     <span>Professional Teacher</span>
                   </div>
-
                   <div>
                     <span>From Singapore</span>
                   </div>
-
                 </div>
               </div>
-
               <div class="teacherCard-bottom mt-4">
                 <div class="teacherCard-teaches mb-2"><span>Teaches: English, Maths</span></div>
                 <div class="teacherCard-speaks"><span>Speaks: English</span></div>
               </div>
-
             </div>
           </div>
-
           <%# Teacher card right %>
           <div class="teacherCard-right mt-4">
             <div class=star-ratings>
@@ -48,11 +38,9 @@
               <span><i class="bi bi-star-fill"></i></span>
               <span></span>
             </div>
-
           <div class=lessons>
             <span><%= user.lessons.count %> Lessons taught</span>
           </div>
-
           </div>
         </div>
       <% end %>
