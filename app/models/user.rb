@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :subjects, dependent: :destroy
-  has_many :availabilities, dependent: :destroy
   has_many :bookings
+  has_many :availabilities, dependent: :destroy
   has_one :schedule, dependent: :destroy
 
   # Include default devise modules. Others available are:
@@ -21,5 +21,15 @@ class User < ApplicationRecord
 
   def teacher?
     self.role == "teacher"
+  end
+
+  def lessons
+      bookings = []
+
+      self.subjects.each do |subject|
+        bookings << subject.bookings
+      end
+
+      bookings.flatten
   end
 end
