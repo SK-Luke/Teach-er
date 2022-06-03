@@ -22,6 +22,11 @@ class SchedulesController < ApplicationController
 
     # This section is for adding a new schedule
     @schedule = Schedule.new
+
+    # This section is for set schedule
+    @booking = Booking.last
+
+    @users_schedule = current_user.schedule
   end
 
   # def new
