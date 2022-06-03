@@ -66,24 +66,14 @@ class Availability < ApplicationRecord
   def new_avail(date, schedule_hash)
     day_start_time = day_start_time(schedule_hash, date)
     day_end_time = day_end_time(schedule_hash, date)
-    puts day_start_time
-    puts day_end_time
 
     new_start_time = new_datetime(date, day_start_time)
     new_end_time = new_datetime(date, day_end_time)
-    puts new_start_time
-    puts new_end_time
 
     split_into_hour_inst(new_start_time, new_end_time)
   end
 
   def split_into_hour_inst(the_start_time, the_end_time)
-    # new_avail = Availability.new(
-    #   start_time: the_start_time,
-    #   end_time: the_end_time
-    # )
-    # new_avail.user = user
-    # new_avail.save!
     while the_start_time < the_end_time
       new_avail = Availability.new(
         start_time: the_start_time,

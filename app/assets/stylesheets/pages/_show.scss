@@ -1,5 +1,8 @@
-.main-container {
-  justify-content: space-between;
+.sticky {
+  align-items: flex-start;
+  justify-content: space-around;
+  display: flex;
+  margin: 0;
 }
 
 .left-container {
