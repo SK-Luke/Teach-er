@@ -34,13 +34,31 @@ export default class extends Controller {
   update_grade_input(event) {
     event.preventDefault()
     const selected_subject = event.currentTarget.selectedOptions[0].innerText
-    console.log(this.subjectsTargets)
-    console.log(document.querySelectorAll("#subject_title")[0].innerText)
-    //console.log(this.gradeTarget)
-    //console.log(this.subjectTarget)
-    var subject = document.getElementById("booking_subject");
-    //console.log(subject)
-    var grade_input = document.getElementById("booking_grade");
-    //console.log(grade_input)
+    // console.log(selected_subject)
+    // console.log(this.subjectsTargets)
+    // console.log(document.querySelectorAll("#subject_title")[0].innerText)
+    // console.log(document.querySelectorAll("#subject_grades")[0].innerText)
+
+    const subject_titles = []
+    const subject_grades = []
+    document.querySelectorAll("#subject_title").forEach(title => subject_titles.push(title.innerText));
+    document.querySelectorAll("#subject_grades").forEach(grades => subject_grades.push(grades.innerText));
+
+    const index = subject_titles.indexOf(selected_subject)
+    const selected_subj_grades = subject_grades[index]
+    const grade_options = selected_subj_grades.replace('Grades:','').replaceAll(/\s/g,'').split('|')
+    const gradeTarget = this.gradeTarget
+    gradeTarget.innerHTML = '';
+
+    const option1 = document.createElement('option')
+    option1.innerHTML = '<option value="" label=" "></option>'
+    gradeTarget.appendChild(option1)
+
+    grade_options.forEach((element) => {
+      const new_option = document.createElement('option')
+      new_option.innerHTML = `<option value="${element}">${element}</option>`
+      gradeTarget.appendChild(new_option)
+    })
+    console.log(gradeTarget)
   }
 }
