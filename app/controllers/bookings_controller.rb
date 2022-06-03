@@ -10,25 +10,30 @@ class BookingsController < ApplicationController
     @bookings = []
     all = Booking.all
 
-    if current_user == "Teacher"
+    if current_user.role == "Teacher"
       all.each do |booking|
         @bookings << booking if current_user.subject_ids.include? booking.subject.id
       end
-    elsif current_user == "Student"
+    elsif current_user.role == "Student"
       all.each do |booking|
         @bookings << booking if (current_user.id == booking.user_id)
       end
-
     end
+    raise
   end
 
   def show
   end
 
   def create
-    @user = current_user
-    @subject = booking_params[:subject]
-    @start_time = booking_params[:subject]
+    # @user = current_user
+    # @subject = booking_params[:subject]
+    # @start_time = booking_params[:start_time]
+    # @grade = booking_params[:grade]
+    @new_availability = Availability.new
+    @booking = Booking.new(booking_params)
+    @booking.user_id = current_user.id
+    @booking.end_time = booking_params["start_time"].to_datetime + 1.hour
 
     if @booking.save
       #@new_availability = Availability.new(availability_params)
@@ -39,6 +44,10 @@ class BookingsController < ApplicationController
       @availability_slot = Availability.where(start_time: start_date.beginning_of_week..start_date.end_of_week)
       @schedule = Schedule.new
       render 'schedules/index'
+<<<<<<< HEAD
+      raise
+    end
+=======
       # raise
     end
 
@@ -46,6 +55,7 @@ class BookingsController < ApplicationController
 
   def confirmation
     @booking = Booking.find(params[:id])
+>>>>>>> master
   end
 
   def destroy
@@ -69,7 +79,7 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:subject, :start_time)
+    params.require(:booking).permit(:subject_id, :start_time, :grade)
   end
 
 end
