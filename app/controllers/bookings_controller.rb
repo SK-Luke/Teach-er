@@ -25,25 +25,28 @@ class BookingsController < ApplicationController
   end
 
   def create
-    # @user = current_user
-    # @subject = booking_params[:subject]
-    # @start_time = booking_params[:start_time]
-    # @grade = booking_params[:grade]
     @new_availability = Availability.new
     @booking = Booking.new(booking_params)
     @booking.user_id = current_user.id
     @booking.end_time = booking_params["start_time"].to_datetime + 1.hour
 
     if @booking.save
-      #@new_availability = Availability.new(availability_params)
-      #redirect_to '/users/show'
+      # TODO: Add method to update availability of the teacher to be a blocker
+      # 1) get teacher through subject
+      teacher_id = Subject.find(@booking.subject_id).user_id
+      teacher = User.find(teacher_id)
+      # 2) find the availability which was selected
+      availability = teacher.availabilities.where(start_time: booking_params["start_time"])[0]
+      # 3) change to blocker
+      availability.blocker = true
+      availability.save!
+
       redirect_to confirmation_booking_path(@booking)
     else
       start_date = params.fetch(:start_date, Date.today).to_date
       @availability_slot = Availability.where(start_time: start_date.beginning_of_week..start_date.end_of_week)
       @schedule = Schedule.new
-      render 'schedules/index'
-      # raise
+      render 'users/show'
     end
   end
 
