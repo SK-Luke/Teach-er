@@ -10,16 +10,16 @@ class BookingsController < ApplicationController
     @bookings = []
     all = Booking.all
 
-    if current_user == "Teacher"
+    if current_user.role == "Teacher"
       all.each do |booking|
         @bookings << booking if current_user.subject_ids.include? booking.subject.id
       end
-    elsif current_user == "Student"
+    elsif current_user.role == "Student"
       all.each do |booking|
         @bookings << booking if (current_user.id == booking.user_id)
       end
-
     end
+    raise
   end
 
   def show
