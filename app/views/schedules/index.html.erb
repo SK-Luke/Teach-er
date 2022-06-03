@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row justify-content-around">
+    <div class="col-8">
+      <div class="d-flex justify-content-between">
+        <h2>My Schedule</h2>
+      </div>
+
+      <div class="calendar-container">
+        <% if @availability_slot %>
+          <%= month_calendar(events: @availability_slot, end_attribute: :end_time) do |date, availabilities| %>
+            <%= date %>
+            <% availabilities.each do |availability| %>
+              <div class="availability">
+                <p>Available</p>
+                <small><%= availability.time unless availability.multi_days? %></small>
+              </div>
+            <% end %>
+          <% end %>
+        <% else %>
+          <%= month_calendar do |date| %>
+            <%= date %>
+          <% end %>
+        <% end %>
+      </div>
+
+    </div>
+    <div class="col-4">
+      <div class="form-wrapper" style="width: 400px; margin: 0 auto;">
+        <h3>Add an Availability</h3>
+
+        <%= simple_form_for(@new_availability) do |f| %>
+          <%= f.input :start_time, as: :string, input_html: {class: "datepicker"} %>
+          <%= f.input :end_time, as: :string, input_html: {class: "datepicker"} %>
+          <%= f.submit "Add availability", class: "btn btn-flat mb-3" %>
+        <% end %>
+        <hr>
+        <h3>Set your weekly schedule</h3>
+          <div class="container px-0">
+            <%= simple_form_for(@schedule) do |f| %>
+              <div class="schedule row align-items-center">
+                <% Schedule.week.each do |key, value| %>
+                  <h3><%= key %></h3>
+                  <div class="col">
+                    <%= f.input value[0], :label => "Start Time", include_blank: true %>
+                  </div>
+                  <div class="col">
+                    <%= f.input value[1], :label => "End Time", include_blank: true %>
+                  </div>
+                <% end %>
+              </div>
+              <%= f.submit "Set Schedule", class: "btn btn-flat mb-3" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

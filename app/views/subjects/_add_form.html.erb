@@ -1,5 +1,6 @@
 
 <div class="container" >
+  <h3>Add a subject</h3>
   <%= simple_form_for @subject do |f| %>
     <%= f.input :title, collection: Subject::SUBJECTS%>
     <%= f.input :description %>

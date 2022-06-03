@@ -14,3 +14,8 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+a {
+  text-decoration: none;
+  color: rgb(30, 30, 30)
+}
