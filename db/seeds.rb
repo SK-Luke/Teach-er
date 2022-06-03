@@ -21,11 +21,11 @@ contents = ["They/Them pretty good!", "We blazed", "Good tutor, will come back a
 num = 143596825983245
 # Destory all Database
 puts "Clearing database..."
-Booking.destroy_all
-Review.destroy_all
-Subject.destroy_all
-Availability.destroy_all
-User.destroy_all
+# Booking.destroy_all
+# Review.destroy_all
+# Subject.destroy_all
+# Availability.destroy_all
+# User.destroy_all
 # Schedules.destroy_all
 puts "Seeding your shit"
 puts "Go get a drink, its gonna take years"

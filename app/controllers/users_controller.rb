@@ -15,7 +15,6 @@ class UsersController < ApplicationController
     #@availability_slot = Availability.where(start_time: start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week)
     @availability_slot = Availability.where(start_time: start_date.beginning_of_week..start_date.end_of_week).where(user_id: @user.id)
   end
-end
 
   private
 
@@ -25,16 +24,15 @@ end
 
   #Calculates rating for the stars
   def avgRating(users)
-    # Iterate through each review and get its rating 
+    sum_reviews = 0
+    total_reviews = 0
+
     users.each do |user|
-      count = 0
-      # Sum of reviews
       user.reviews.each do |review|
-        count += review.rating
+        sum_reviews += review.rating
+        total_reviews += 1
       end
-    totalReview = user.reviews.count
-    avg = (count.to_f / totalReview.to_f).round
-    return avg
+    end
+    (sum_reviews.to_f / total_reviews).round
   end
-  # Count total reviews
 end
