@@ -70,7 +70,7 @@ end
 puts "Creating Subjects"
 all_users = User.all
 all_users.each do |user|
-  subs = Subject::TITLES.sample
+  subs = Subject::SUBJECTS.sample
   teacher = User.where("role = 'Teacher'").sample
   # all_user = User.all.count
   # choose_user = User.all.sample
@@ -117,7 +117,7 @@ end
 #Seed for availabilities
 puts "Creating Availabilities"
 User.where(role: 'Teacher').each do |teacher|
-  availability = Availability.new(start_time: Time.now, end_time: Time.now + 1*60*60, user: teacher)
+  availability = Availability.new(start_time: DateTime.now.beginning_of_hour, end_time:  DateTime.now.beginning_of_hour + 1*60*60, user: teacher)
   availability.save!
 end
 
