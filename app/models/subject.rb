@@ -1,6 +1,6 @@
 class Subject < ApplicationRecord
   belongs_to :user
-  has_many :bookings
+  has_many :bookings, dependent: :destroy
 
 
   SUBJECTS = %w[A.Math E.Math English Chinese Malay Tamil Geography History Social_Studies Physics Biology Chemistry]
