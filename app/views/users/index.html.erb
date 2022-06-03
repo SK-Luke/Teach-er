@@ -1,50 +1,75 @@
 <div class="container main-container">
   <div class="row g-5">
     <% @users.each do |user| %>
-    <div class="col-4">
-      <%= link_to user do %>
-        <div class="teacher-main shadow-sm" style="border-radius: 8px; padding: 8px; background-color: white; display: flex;">
-
-          <%# Teacher card left %>
-          <div class="teacherCard-left">
-            <div class="avatar"></div>
-            <div class="teacherCard-body">
-              <div class="teacherCard-top">
-                <div class="teacherCard-middle">
-                  <div class="teacherCard-name">
-                    <%= user.username %>
+      <% if user.role == 'Teacher' %>
+        <div class="col-6">
+          <%= link_to user do %>
+            <div class="teacher-main" style="border:1px solid rgb(190,190,190); border-radius: 12px; padding: 1rem; background-color: white; display: flex;">
+              <%# Teacher card left %>
+              <div class="teacherCard-left">
+                <div class="avatar">
+                  <%# put avatar here %>
+                </div>
+                <div class="teacherCard-body">
+                  <div class="teacherCard-top">
+                    <div class="teacherCard-middle">
+                      <div class="teacherCard-name">
+                        <%= user.username %>
+                      </div>
+                      <div class="teacherCard-info">
+                        <span>Role: <%= user.role %></span>
+                      </div>
+                      <div>
+                        <span>From <%= user.location %>, Singapore</span>
+                      </div>
+                    </div>
                   </div>
-                  <div class="teacherCard-info">
-                    <span>Professional Teacher</span>
-                  </div>
-                  <div>
-                    <span>From Singapore</span>
+                  <div class="teacherCard-bottom mt-4">
+                    <div class="teacherCard-teaches mb-2">
+                      <span>
+                        Teaches: 
+                        <% user.subjects.each do |subject| %>
+                          <%= subject.title %>
+                        <% end %>
+                      </span>
+                    </div>
+                    <%# <div class="teacherCard-speaks"><span>Speaks: English</span></div> %>
                   </div>
                 </div>
               </div>
-              <div class="teacherCard-bottom mt-4">
-                <div class="teacherCard-teaches mb-2"><span>Teaches: English, Maths</span></div>
-                <div class="teacherCard-speaks"><span>Speaks: English</span></div>
+              <%# Teacher card right %>
+              <div class="teacherCard-right mt-4">
+                <div class=star-ratings>
+                
+                <% if user.reviews.count == 0 %>
+                    <% (5).times do %>
+                    <span><i class="bi bi-star-fill"></i></span>
+                    <% end %>
+                <% else %>
+                <% sum_reviews = 0 %>
+                <% total_reviews = 0 %>
+                  <% user.reviews.each do |review| %>
+                    <% sum_reviews += review.rating %>
+                    <% total_reviews += 1 %>
+                    <% rating = (sum_reviews.to_f / total_reviews).round %>
+                    <% rating.times do %>
+                      <span><i class="bi bi-star-fill text-yellow"></i></span>
+                    <% end %>
+                    <% (5-rating).times do %>
+                      <span><i class="bi bi-star-fill"></i></span>
+                    <% end %>
+                  <% end %>
+                <% end %>
+                  
+                </div>
+              <div class=lessons>
+                <span><%= user.bookings.count %> Lessons taught</span>
+              </div>
               </div>
             </div>
-          </div>
-          <%# Teacher card right %>
-          <div class="teacherCard-right mt-4">
-            <div class=star-ratings>
-              <span><i class="bi bi-star-fill"></i></span>
-              <span><i class="bi bi-star-fill"></i></span>
-              <span><i class="bi bi-star-fill"></i></span>
-              <span><i class="bi bi-star-fill"></i></span>
-              <span><i class="bi bi-star-fill"></i></span>
-              <span></span>
-            </div>
-          <div class=lessons>
-            <span><%= user.lessons.count %> Lessons taught</span>
-          </div>
-          </div>
+          <% end %>
         </div>
       <% end %>
-    </div>
     <% end %>
   </div>
 </div>
