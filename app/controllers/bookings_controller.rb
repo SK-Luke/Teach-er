@@ -9,8 +9,16 @@ class BookingsController < ApplicationController
   def index
     @bookings = []
     all = Booking.all
-    all.each do |booking|
-      @bookings << booking if current_user.subject_ids.include? booking.subject.id
+
+    if current_user == "Teacher"
+      all.each do |booking|
+        @bookings << booking if current_user.subject_ids.include? booking.subject.id
+      end
+    elsif current_user == "Student"
+      all.each do |booking|
+        @bookings << booking if (current_user.id == booking.user_id)
+      end
+
     end
   end
 
@@ -22,12 +30,22 @@ class BookingsController < ApplicationController
     @subject = booking_params[:subject]
     @start_time = booking_params[:subject]
 
-    # to be added by Wan Xin
-    # @end_time =
-    # @grade =
+    if @booking.save
+      #@new_availability = Availability.new(availability_params)
+      #redirect_to '/users/show'
+      redirect_to confirmation_booking_path(@booking)
+    else
+      start_date = params.fetch(:start_date, Date.today).to_date
+      @availability_slot = Availability.where(start_time: start_date.beginning_of_week..start_date.end_of_week)
+      @schedule = Schedule.new
+      render 'schedules/index'
+      # raise
+    end
 
-    # @booking = Booking.create()
-    redirect_to confirmation_bookings_path(@booking)
+  end
+
+  def confirmation
+    @booking = Booking.find(params[:id])
   end
 
   def destroy
