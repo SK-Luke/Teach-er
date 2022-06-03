@@ -43,18 +43,12 @@ class BookingsController < ApplicationController
       @availability_slot = Availability.where(start_time: start_date.beginning_of_week..start_date.end_of_week)
       @schedule = Schedule.new
       render 'schedules/index'
-<<<<<<< HEAD
-      raise
-    end
-=======
       # raise
     end
-
   end
 
   def confirmation
     @booking = Booking.find(params[:id])
->>>>>>> master
   end
 
   def destroy
