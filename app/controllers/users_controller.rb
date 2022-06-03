@@ -2,12 +2,13 @@ class UsersController < ApplicationController
   before_action :select_user, only: %i[show]
 
   def index
-    @users = User.all
-    @avgRating = avgRating(@users)
+    @users = User.where(role:"Teacher")
+
+    # I can't get ratings for each user from the backend. Doing it on index.html instead. See line 27 onwards
+    # @avgRating = avgRating(@users)
   end
 
   def show
-    @user = User.find(params[:id])
     @booking = Booking.new
     @user_bookings_added = []
     # This section is for the calendar view
@@ -22,17 +23,18 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  # I can't get ratings for each user from the backend. Doing it on index.html instead.
   #Calculates rating for the stars
-  def avgRating(users)
-    sum_reviews = 0
-    total_reviews = 0
-
-    users.each do |user|
-      user.reviews.each do |review|
-        sum_reviews += review.rating
-        total_reviews += 1
-      end
-    end
-    (sum_reviews.to_f / total_reviews).round
-  end
+  # def avgRating(users)
+  #   sum_reviews = 0
+  #   total_reviews = 0
+    
+  #   users.each do |user|
+  #     user.reviews.each do |review|
+  #       sum_reviews += review.rating
+  #       total_reviews += 1
+  #     end
+  #   end
+  #   (sum_reviews.to_f / total_reviews).round
+  # end
 end
