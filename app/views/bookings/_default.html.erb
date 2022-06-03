@@ -25,7 +25,7 @@ able Display Date of bookings %>
             <div class="d-flex user-card">
               <div class="d-flex card-user-dets">
                 <div class="p-2">Avatar</div>
-                <div class="p-2"></div>
+                <div class="p-2"><%= booking.subject.user.username %></div>
                 <div class="p-2">number of lessons</div>
               </div>
 
@@ -38,34 +38,7 @@ able Display Date of bookings %>
 
       <div class="bookings-container">
         <h1 class="row justify-content-md-center">Past bookings</h1>
-        <div class="row">
-          <% @bookings.each do |booking| %>
 
-          <div class="card-body">
-            <div class="d-flex booking-details">
-              <div class="p-2 flex-grow-1 bd-highlight">
-                <%= booking.start_time.strftime("%A, %d %b %Y") %>, <%=
-                booking.start_time.strftime("%H:%M") %> to <%=
-                booking.end_time.strftime("%H:%M") %>
-              </div>
-
-              <div class="p-2">
-                <%= link_to "edit", edit_booking_path(booking) %>
-              </div>
-            </div>
-
-            <div class="d-flex user-card">
-              <div class="d-flex card-user-dets">
-                <div class="p-2">Avatar</div>
-
-                <div class="p-2">number of lessons</div>
-              </div>
-
-              <div class="grades"><%= booking.subject.grade %></div>
-            </div>
-          </div>
-          <% end %>
-        </div>
       </div>
     </div>
   </div>

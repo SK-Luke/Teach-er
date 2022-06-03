@@ -5,7 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
 # This is to seed Student
 random = ['8','9']
 # Will add more location if need be
@@ -20,7 +19,6 @@ grade = ["Secondary-1", "Secondary-2", "Secondary-3", "Secondary-4/5"]
 contents = ["They/Them pretty good!", "We blazed", "Good tutor, will come back again!", "Shit tutor, don't go for this person", "#{Faker::Quotes::Shakespeare.as_you_like_it_quote}"]
 # Just playing
 num = 143596825983245
-
 # Destory all Database
 puts "Clearing database..."
 Booking.destroy_all
@@ -29,10 +27,8 @@ Subject.destroy_all
 Availability.destroy_all
 User.destroy_all
 # Schedules.destroy_all
-
 puts "Seeding your shit"
 puts "Go get a drink, its gonna take years"
-
 # Create Student users
 puts "Creating Users"
 5.times do
@@ -48,7 +44,6 @@ puts "Creating Users"
   new_user.save!
   # puts "1 down, #{num -= 1} more to go!"
 end
-
 # # Create Teacher users
 puts "Creating Teachers"
 5.times do
@@ -65,7 +60,6 @@ puts "Creating Teachers"
   )
   new_user.save!
 end
-
   # Seed for subjects
 puts "Creating Subjects"
 all_users = User.all
@@ -84,7 +78,6 @@ all_users.each do |user|
 )
   new_subject.save!
 end
-
   #Seed for bookings
 puts "Creating Bookings"
 50.times do
@@ -100,7 +93,6 @@ puts "Creating Bookings"
     # puts "1 down, #{num -= 1} more to go!"
     new_booking.save!
 end
-
 # Seed for review400 - 405
 puts "Creating Reviews"
 User.all.each do |user|
@@ -114,12 +106,16 @@ User.all.each do |user|
     new_review.save!
   end
 end
-
 #Seed for availabilities
 puts "Creating Availabilities"
 User.where(role: 'Teacher').each do |teacher|
   availability = Availability.new(start_time: DateTime.now.beginning_of_hour, end_time:  DateTime.now.beginning_of_hour + 1*60*60, user: teacher)
   availability.save!
 end
+<<<<<<< HEAD
 
 puts "finished"
+=======
+puts "Finished, now get back to work!!"
+puts "jk, love you <3"
+>>>>>>> master
