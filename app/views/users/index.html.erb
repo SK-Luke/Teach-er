@@ -2,15 +2,17 @@
   <div class="row g-5">
 
     <% @users.each do |user| %>
-    <div class="col-6">
-      <div class="teacher-main" style="border:1px solid rgb(190,190,190); border-radius: 12px; padding: 1rem; background-color: white; display: flex;">
+      <% if user.role == 'Teacher' %>
+        <%= link_to user do %>
+          <div class="col-6">
+            <div class="teacher-main" style="border:1px solid rgb(190,190,190); border-radius: 12px; padding: 1rem; background-color: white; display: flex;">
 
-        <%# Teacher card left %>
-        <div class="teacherCard-left">
+            <%# Teacher card left %>
+            <div class="teacherCard-left">
 
-          <div class="avatar"></div>
+            <div class="avatar"></div>
 
-          <div class="teacherCard-body">
+            <div class="teacherCard-body">
 
             <div class="teacherCard-top">
               <div class="teacherCard-middle">
@@ -49,19 +51,17 @@
             <span></span>
           </div>
 
-          <div class=students>
-            <span>32 Students</span>
-          </div>
 
           <div class=lessons>
-            <span>71 Lessons</span>
+            <span><%= user.lessons.count %> Lessons taught</span>
           </div>
 
         </div>
       </div>
     </div>
+        <% end %>
+      <% end %>
     <% end %>
-
   </div>
 </div>
 
