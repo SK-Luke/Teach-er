@@ -19,7 +19,6 @@ class BookingsController < ApplicationController
         @bookings << booking if (current_user.id == booking.user_id)
       end
     end
-    raise
   end
 
   def show
