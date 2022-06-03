@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-# This is to seed Student
+# This is for first number of phone
 random = ['8','9']
 # Will add more location if need be
 location = ["Jurong", "Tampines", "Yishun", "Labrador", "Raffles Place"]
@@ -26,11 +26,12 @@ Review.destroy_all
 Subject.destroy_all
 Availability.destroy_all
 User.destroy_all
-# Schedules.destroy_all
-puts "Seeding your shit"
+Schedule.destroy_all
+puts "Seeding your stuff, please make sure you check if any models and validations are updated"
 puts "Go get a drink, its gonna take years"
+
 # Create Student users
-puts "Creating Users"
+puts "Creating Students"
 5.times do
   new_user = User.new(
     email: Faker::Internet.email,
@@ -46,7 +47,7 @@ puts "Creating Users"
 end
 # # Create Teacher users
 puts "Creating Teachers"
-5.times do
+25.times do
   locate = location.sample
   subs = subject.sample
   new_user = User.new(
@@ -70,47 +71,54 @@ all_users.each do |user|
   # choose_user = User.all.sample
   new_subject = Subject.new(
     grade: [grade.sample],
-    description: "Much #{subs} very wow",
-    hourly_rate: Faker::Number.number(digits: 10).round,
+    description: "I teach #{subs} very wow, but #{Faker::TvShows::FamilyGuy.quote}",
+    hourly_rate: Faker::Number.number(digits: 2).round,
     user: user,
     title: subs
-    # booking_id: "#{count += 1}"
 )
   new_subject.save!
 end
   #Seed for bookings
 puts "Creating Bookings"
-50.times do
+# 5.times do
   # count = 0
   subject = Subject.all.sample
-  student = User.where("role = 'Student'").sample
+  teachers = User.all.where("role = 'Teacher'")
+  num = (1..10).to_a
+# Each teacher have at least 1 booking
+teachers.each do |teacher|
+    num.sample.times do
     new_booking = Booking.new(
       start_time: Time.now,
       end_time: Time.now + 1,
-      student: student,
-      subject: subject
+      user: teacher,
+      subject: subject,
+      grade: grade.sample
     )
-    # puts "1 down, #{num -= 1} more to go!"
     new_booking.save!
-end
-# Seed for review400 - 405
-puts "Creating Reviews"
-User.all.each do |user|
-  5.times do
-  # student = User.where(role: 'Student').sample
-    new_review = Review.new(
-      content: contents.sample,
-      rating: (1..5).to_a.sample,
-      user: user
-    )
-    new_review.save!
   end
 end
+# Seed for review400 - 405
+
 #Seed for availabilities
 puts "Creating Availabilities"
 User.where(role: 'Teacher').each do |teacher|
   availability = Availability.new(start_time: DateTime.now.beginning_of_hour, end_time:  DateTime.now.beginning_of_hour + 1*60*60, user: teacher)
   availability.save!
+end
+
+puts "Creating Reviews"
+users = User.all.where(role:"Teacher")
+users.each do |user|
+  1.times do
+  # student = User.where(role: 'Student').sample
+    newReview = Review.new(
+      content: contents.sample,
+      rating: (1..5).to_a.sample,
+      user: user
+    )
+    newReview.save!
+  end
 end
 
 puts "finished"
