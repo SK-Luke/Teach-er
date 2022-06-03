@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row justify-content-around">
     <div class="col-8">
-      <div >
+      <div class="sticky">
         <h2>My Schedule</h2>
 
         <div class="calendar-container">
@@ -40,8 +40,9 @@
         <hr>
 
         <% if @users_schedule %>
-          <p><%= @users_schedule.week %></p>
-          <% <%= @users_schedule.week.each do |key, value| %>
+          <h3>Your Weekly Schedule:</h3>
+          <% @users_schedule.week.each do |key, value| %>
+            <p><%= key %>: <%= value[0].strftime("%H%M") %> - <%= value[1].strftime("%H%M") %></p>
           <% end %>
         <% else %>
           <h3>Set your weekly schedule</h3>
@@ -51,10 +52,10 @@
                 <% Schedule.week.each do |key, value| %>
                   <h3><%= key %></h3>
                   <div class="col">
-                    <%= f.input value[0], :label => "Start Time", include_blank: true %>
+                    <%= f.input value[0], :label => "Start Time", :as => :time, :minute_step => 30, default: Time.parse('9:00') %>
                   </div>
                   <div class="col">
-                    <%= f.input value[1], :label => "End Time", include_blank: true %>
+                    <%= f.input value[1], :label => "End Time", :as => :time, :minute_step => 30, default: Time.parse('22:00') %>
                   </div>
                 <% end %>
               </div>

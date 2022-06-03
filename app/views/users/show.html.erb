@@ -82,7 +82,8 @@
       <div data-calendar-target="input">
         <h4> Add a booking</h4>
         <%= simple_form_for([@user, @booking]) do |f| %>
-          <%= f.input :subject, as: :select, collection: @user.subjects %>
+          <span data-action="change->calendar#update_grade_input" data-calendar-target="subjectSelection"><%= f.input :subject_id, as: :select, input_html: { value: " " }, collection: @user.subjects %></span>
+          <%= f.input :grade, as: :select, input_html: { value: " " }, collection: Subject::GRADES %>
           <%= f.input :start_time, :label => "Select an availability slot. Click on a slot on the calendar", input_html: { value: Time.now.beginning_of_day }, as: :string %>
           <%= f.button :submit, "Submit a booking request", class: 'btn btn-primary' %>
         <% end %>
