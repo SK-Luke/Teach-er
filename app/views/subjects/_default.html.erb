@@ -1,34 +1,35 @@
 <h1>My subjects</h1>
 
-  <div class="row">
-    <% @subjects.each do |subject| %>
-      <div class="col-6">
-        <div class="card">
-          <div class="d-flex bd-highlight">
-            <div class="p-3 flex-grow-1 bd-highlight"><h4><%= subject.title %></h4></div>
-            <div class="p-3 bd-highlight"><%= link_to "edit", edit_subject_path(subject) %></div>
-            <div class="p-3 bd-highlight"><%= link_to "🗑️",
-                              subject_path(subject),
-                              method: :delete,
-                              data: { confirm: "Are you sure?" } %></div>
-          </div>
-          <div class="ps-3">
-            <p>Grades: <% subject.grade.each do |level| %>
-              <% if level == subject.grade.last %>
-                <%= level %>
-              <% else %>
-                <%= level %> |
-              <% end %>
-            <% end %>
-            </p>
-          </div>
-          <div class="ps-3">
-            <p>Hourly rate: $<%= subject.hourly_rate %></p>
-          </div>
-          <div class="ps-3">
-            <p>Description: <%= subject.description %></p>
-          </div>
+<div class="row">
+  <% @subjects.each do |subject| %>
+  <div class="col-6">
+    <div class="card">
+      <div class="d-flex bd-highlight">
+        <div class="p-3 flex-grow-1 bd-highlight">
+          <h4><%= subject.title %></h4>
+        </div>
+        <div class="p-3 bd-highlight">
+          <%= link_to "edit", edit_subject_path(subject) %>
+        </div>
+        <div class="p-3 bd-highlight">
+          <%= link_to "🗑️", subject_path(subject), method: :delete, data: {
+          confirm: "Are you sure?" } %>
         </div>
       </div>
-    <% end %>
+      <div class="ps-3">
+        <p>
+          Grades: <% subject.grade.each do |level| %> <% if level ==
+          subject.grade.last %> <%= level %> <% else %> <%= level %> | <% end %>
+          <% end %>
+        </p>
+      </div>
+      <div class="ps-3">
+        <p>Hourly rate: $<%= subject.hourly_rate %></p>
+      </div>
+      <div class="ps-3">
+        <p>Description: <%= subject.description %></p>
+      </div>
+    </div>
   </div>
+  <% end %>
+</div>
