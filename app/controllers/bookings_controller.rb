@@ -18,15 +18,17 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = Booking.new
     @user = current_user
-    @teacher = @subject.user
+    @subject = booking_params[:subject]
+    @start_time = booking_params[:subject]
 
-    @booking.save
+    # to be added by Wan Xin
+    # @end_time =
+    # @grade =
+
+    # @booking = Booking.create()
     redirect_to confirmation_bookings_path(@booking)
   end
-
-#  start_time, :end_time, :user_id, :subject_id)
 
   def destroy
     @booking.destroy
@@ -47,14 +49,9 @@ class BookingsController < ApplicationController
   def select_booking
     @booking = Booking.find(params[:id])
   end
-end
 
-# t.datetime "start_time"
-# t.datetime "end_time"
-# t.datetime "created_at", precision: 6, null: false
-# t.datetime "updated_at", precision: 6, null: false
-# t.bigint "user_id", null: false
-# t.bigint "subject_id", null: false
-# t.string "status", default: "pending"
-# t.index ["subject_id"], name: "index_bookings_on_subject_id"
-# t.index ["user_id"], name: "index_bookings_on_user_id"
+  def booking_params
+    params.require(:booking).permit(:subject, :start_time)
+  end
+
+end
