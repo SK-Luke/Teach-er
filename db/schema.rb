@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_02_074627) do
+ActiveRecord::Schema.define(version: 2022_06_03_014735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2022_06_02_074627) do
     t.bigint "user_id", null: false
     t.bigint "subject_id", null: false
     t.string "status", default: "pending"
+    t.string "grade"
     t.index ["subject_id"], name: "index_bookings_on_subject_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
