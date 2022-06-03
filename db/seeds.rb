@@ -13,11 +13,11 @@ location = ["Jurong", "Tampines", "Yishun", "Labrador", "Raffles Place"]
 # Either have number of no number
 contact_num = ["+65 #{random.sample}#{Faker::Number.number(digits: 7)}", ""]
 # Description
-subject = Subject::TITLES
+subject = Subject::SUBJECTS
 # grade
 grade = ["Secondary-1", "Secondary-2", "Secondary-3", "Secondary-4/5"]
 # Content
-contents = ["They/Them pretty good!", "We blazed", "Good tutor, will come back again!", "Shit tutor, don't go for this person"]
+contents = ["They/Them pretty good!", "We blazed", "Good tutor, will come back again!", "Shit tutor, don't go for this person", "#{Faker::Quotes::Shakespeare.as_you_like_it_quote}"]
 # Just playing
 num = 143596825983245
 
@@ -70,7 +70,7 @@ end
 puts "Creating Subjects"
 all_users = User.all
 all_users.each do |user|
-  subs = Subject::TITLES.sample
+  subs = Subject::SUBJECTS.sample
   teacher = User.where("role = 'Teacher'").sample
   # all_user = User.all.count
   # choose_user = User.all.sample
@@ -103,12 +103,13 @@ end
 
 # Seed for review400 - 405
 puts "Creating Reviews"
-5.times do
-  student = User.where(role: 'Student').sample
+all_users = User.all.count
+all_users.times do
+  # student = User.where(role: 'Student').sample
   new_review = Review.new(
     content: contents.sample,
     rating: (1..5).to_a.sample,
-    user: student
+    user: user
   )
   new_review.save!
 end
@@ -116,7 +117,7 @@ end
 #Seed for availabilities
 puts "Creating Availabilities"
 User.where(role: 'Teacher').each do |teacher|
-  availability = Availability.new(start_time: Time.now, end_time: Time.now + 1*60*60, user: teacher)
+  availability = Availability.new(start_time: DateTime.now.beginning_of_hour, end_time:  DateTime.now.beginning_of_hour + 1*60*60, user: teacher)
   availability.save!
 end
 
