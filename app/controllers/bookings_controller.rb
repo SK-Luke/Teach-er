@@ -18,16 +18,26 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @user = current_user
-    @subject = booking_params[:subject]
-    @start_time = booking_params[:subject]
+    # @user = current_user
+    # @subject = booking_params[:subject]
+    # @start_time = booking_params[:start_time]
+    # @grade = booking_params[:grade]
+    @new_availability = Availability.new
+    @booking = Booking.new(booking_params)
+    @booking.user_id = current_user.id
+    @booking.end_time = booking_params["start_time"].to_datetime + 1.hour
 
-    # to be added by Wan Xin
-    # @end_time =
-    # @grade =
-
-    # @booking = Booking.create()
-    redirect_to confirmation_bookings_path(@booking)
+    if @booking.save
+      #@new_availability = Availability.new(availability_params)
+      #redirect_to '/users/show'
+      redirect_to confirmation_booking_path(@booking)
+    else
+      start_date = params.fetch(:start_date, Date.today).to_date
+      @availability_slot = Availability.where(start_time: start_date.beginning_of_week..start_date.end_of_week)
+      @schedule = Schedule.new
+      render 'schedules/index'
+      raise
+    end
   end
 
   def destroy
@@ -51,7 +61,7 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:subject, :start_time)
+    params.require(:booking).permit(:subject_id, :start_time, :grade)
   end
 
 end

@@ -1,8 +1,6 @@
 .sticky {
-  align-items: flex-start;
-  justify-content: space-around;
-  display: flex;
-  margin: 0;
+  position: sticky;
+  top: 0;
 }
 
 .left-container {
