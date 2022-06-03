@@ -112,10 +112,5 @@ User.where(role: 'Teacher').each do |teacher|
   availability = Availability.new(start_time: DateTime.now.beginning_of_hour, end_time:  DateTime.now.beginning_of_hour + 1*60*60, user: teacher)
   availability.save!
 end
-<<<<<<< HEAD
 
 puts "finished"
-=======
-puts "Finished, now get back to work!!"
-puts "jk, love you <3"
->>>>>>> master

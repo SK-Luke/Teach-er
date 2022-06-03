@@ -31,18 +31,12 @@
               <%# Teacher card right %>
               <div class="teacherCard-right mt-4">
                 <div class=star-ratings>
-                  <% user.reviews.first.rating do %>
+                  <% @avgRating.times do %>
                     <span><i class="bi bi-star-fill text-yellow"></i></span>
                   <% end %>
-                  <% (5-user.reviews.first.rating).times do %>
+                  <% (5-@avgRating).times do %>
                     <span><i class="bi bi-star-fill"></i></span>
                   <% end %>
-                  
-                  <%# <span><i class="bi bi-star-fill"></i></span>
-                  <span><i class="bi bi-star-fill"></i></span>
-                  <span><i class="bi bi-star-fill"></i></span> 
-                  <span><i class="bi bi-star-fill"></i></span>
-                  <span><i class="bi bi-star-fill"></i></span> %>
                 </div>
               <div class=lessons>
                 <span><%= user.lessons.count %> Lessons taught</span>
