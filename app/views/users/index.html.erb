@@ -40,15 +40,30 @@
               <%# Teacher card right %>
               <div class="teacherCard-right mt-4">
                 <div class=star-ratings>
-                  <% @avgRating.times do %>
-                    <span><i class="bi bi-star-fill text-yellow"></i></span>
-                  <% end %>
-                  <% (5-@avgRating).times do %>
+                
+                <% if user.reviews.count == 0 %>
+                    <% (5).times do %>
                     <span><i class="bi bi-star-fill"></i></span>
+                    <% end %>
+                <% else %>
+                <% sum_reviews = 0 %>
+                <% total_reviews = 0 %>
+                  <% user.reviews.each do |review| %>
+                    <% sum_reviews += review.rating %>
+                    <% total_reviews += 1 %>
+                    <% rating = (sum_reviews.to_f / total_reviews).round %>
+                    <% rating.times do %>
+                      <span><i class="bi bi-star-fill text-yellow"></i></span>
+                    <% end %>
+                    <% (5-rating).times do %>
+                      <span><i class="bi bi-star-fill"></i></span>
+                    <% end %>
                   <% end %>
+                <% end %>
+                  
                 </div>
               <div class=lessons>
-                <span><%= user.lessons.count %> Lessons taught</span>
+                <span><%= user.bookings.count %> Lessons taught</span>
               </div>
               </div>
             </div>
