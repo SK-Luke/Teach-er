@@ -13,7 +13,7 @@ location = ["Jurong", "Tampines", "Yishun", "Labrador", "Raffles Place"]
 # Either have number of no number
 contact_num = ["+65 #{random.sample}#{Faker::Number.number(digits: 7)}", ""]
 # Description
-subject = Subject::TITLES
+subject = Subject::SUBJECTS
 # grade
 grade = ["Secondary-1", "Secondary-2", "Secondary-3", "Secondary-4/5"]
 # Content
