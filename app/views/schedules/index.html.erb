@@ -1,28 +1,31 @@
 <div class="container">
   <div class="row justify-content-around">
     <div class="col-8">
-      <div class="d-flex justify-content-between">
+      <div >
         <h2>My Schedule</h2>
-      </div>
 
-      <div class="calendar-container">
-        <% if @availability_slot %>
-          <%= month_calendar(events: @availability_slot, end_attribute: :end_time) do |date, availabilities| %>
-            <%= date %>
-            <% availabilities.each do |availability| %>
-              <div class="availability">
-                <p>Available</p>
-                <small><%= availability.time unless availability.multi_days? %></small>
-              </div>
+        <div class="calendar-container">
+          <% if @availability_slot %>
+            <%= week_calendar(events: @availability_slot, end_attribute: :end_time) do |date, availabilities| %>
+              <%= date %>
+              <% availabilities.each do |availability| %>
+                <div class="<%= availability.blocker ? 'booking' : 'available' %>">
+                  <p><% if availability.blocker %>
+                    Booking
+                  <% else %>
+                    Available
+                  <% end %></p>
+                  <small><%= availability.time unless availability.multi_days? %></small>
+                </div>
+              <% end %>
+            <% end %>
+          <% else %>
+            <%= week_calendar do |date| %>
+              <%= date %>
             <% end %>
           <% end %>
-        <% else %>
-          <%= month_calendar do |date| %>
-            <%= date %>
-          <% end %>
-        <% end %>
       </div>
-
+      </div>
     </div>
     <div class="col-4">
       <div class="form-wrapper" style="width: 400px; margin: 0 auto;">
