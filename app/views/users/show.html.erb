@@ -70,12 +70,18 @@
     <h2>Availabilities</h2>
       <div class="calender">For the calender</div>
   </div>
+  <%= simple_form_for(@booking) do |f| %>
+    <%= f.input :subject, collection: [@subjects], prompt: 'Select subject', label: false, input_html: { multiple: false} %>
+    <%= f.input :start_time, collection: [@availabilities], prompt: 'Select time slot', label: false, input_html: { multiple: false } %>
+    <%= f.submit "Book class", class: "btn btn-primary" %>
+  <% end %>
+  <%# <%= link_to "book", new_user_booking_path(current_user.id) %>
 </div>
 <hr>
 <div class="container">
-  <span> 
-    <%= @user.reviews.count %> 
-    
+  <span>
+    <%= @user.reviews.count %>
+
     <% if @user.reviews.count == 1 %>
       Review
     <% else %>
@@ -104,4 +110,3 @@
     <% end %>
   </div>
 </div>
-

@@ -33,7 +33,7 @@ User.destroy_all
 puts "Seeding your shit"
 puts "Go get a drink, its gonna take years"
 
-# Create Student users 
+# Create Student users
 puts "Creating Users"
 5.times do
   new_user = User.new(
@@ -113,9 +113,14 @@ puts "Creating Reviews"
   new_review.save!
 end
 
+#Seed for availabilities
+puts "Creating Availabilities"
+User.where(role: 'Teacher').each do |teacher|
+  availability = Availability.new(start_time: Time.now, end_time: Time.now + 1*60*60, user: teacher)
+  availability.save!
+end
+
+
+
 puts "Finished, now get back to work!!"
 puts "jk, love you <3"
-
-
-
-

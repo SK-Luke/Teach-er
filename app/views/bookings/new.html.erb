@@ -1,0 +1,13 @@
+<div class="container">
+  <p>Hey <b><%= @user.username %> 👋,</b></p>
+  <p>You selected: <b>Thu 02/06 @ 7pm-8pm</b></p>
+  <p>with prof. <b><%= @teacher.username %></b></p>
+
+  <p>Please enter your credit card info:</p>
+  <div class="creditCardForm">
+    <div class="heading">
+      <h1>Confirm Purchase</h1>
+    </div>
+    <%= link_to "pay now", user_bookings_path, method: :post %>
+  </div>
+</div>
