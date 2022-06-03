@@ -9,8 +9,15 @@ class BookingsController < ApplicationController
   def index
     @bookings = []
     all = Booking.all
-    all.each do |booking|
-      @bookings << booking if current_user.subject_ids.include? booking.subject.id
+
+    if current_user.role == "Teacher"
+      all.each do |booking|
+        @bookings << booking if current_user.subject_ids.include? booking.subject.id
+      end
+    elsif current_user.role == "Student"
+      all.each do |booking|
+        @bookings << booking if (current_user.id == booking.user_id)
+      end
     end
   end
 
@@ -36,8 +43,12 @@ class BookingsController < ApplicationController
       @availability_slot = Availability.where(start_time: start_date.beginning_of_week..start_date.end_of_week)
       @schedule = Schedule.new
       render 'schedules/index'
-      raise
+      # raise
     end
+  end
+
+  def confirmation
+    @booking = Booking.find(params[:id])
   end
 
   def destroy
