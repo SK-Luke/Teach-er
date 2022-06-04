@@ -1,6 +1,6 @@
 <div class="container my-3">
   <div class="row" data-controller="calendar">
-    <div class="col-8">
+    <div class="col-8 teacher-content">
       <h2><%= @user.username %></h2>
       <% if @user.description %>
         <p><%= @user.description %></p>
@@ -10,11 +10,11 @@
       <% end %>
     </div>
     <div class="col-4 position-relative">
-      <img class="avatar-teacher-show position-absolute top-50 start-50 translate-middle" alt="avatar-large" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" />
+      <img class="avatar-teacher-show position-absolute top-0 start-50 translate-middle-x" alt="avatar-large" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" />
     </div>
     <hr>
 
-    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <ul class="nav nav-pills px-3 mb-4" id="pills-tab" role="tablist">
       <li class="nav-item" role="presentation">
         <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Availability</button>
       </li>
@@ -26,7 +26,7 @@
     <!-- Content for Avail Calendar tab -->
     <div class="tab-content" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
-        <h4><%= @user.username %>'s Availability: </h4>
+        <h4>Book a class with <%= @user.username %></h4>
           <div class="calendar-container">
             <% if @availability_slot %>
               <%= week_calendar(events: @availability_slot, end_attribute: :end_time) do |date, availabilities| %>
