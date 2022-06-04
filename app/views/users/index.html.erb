@@ -41,9 +41,7 @@
               <%# Teacher card right %>
               <div class="teacherCard-right mt-4">
                 <%= render 'users/ratings', user: user %>
-              <div class=lessons>
-                <span><%= user.bookings.count %> Lessons taught</span>
-              </div>
+                <%= render 'users/bookings', user: user %>
               </div>
             </div>
           <% end %>
