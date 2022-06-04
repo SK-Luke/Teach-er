@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   # def avgRating(users)
   #   sum_reviews = 0
   #   total_reviews = 0
-    
+
   #   users.each do |user|
   #     user.reviews.each do |review|
   #       sum_reviews += review.rating
