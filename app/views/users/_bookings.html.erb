@@ -1,0 +1,7 @@
+<div class=lessons>
+  <% if user.bookings.count > 1 %>
+    <span><%= user.bookings.count %> Lesson taught</span>
+    <% else %>
+    <span><%= user.bookings.count %> Lessons taught</span>
+  <% end %>
+</div>

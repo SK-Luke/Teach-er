@@ -1,0 +1,8 @@
+<div class="teacherCard-teaches mb-2">
+  <span>
+    Teaches: 
+    <% user.subjects.each do |subject| %>
+      <%= subject.title %>
+    <% end %>
+  </span>
+</div>

@@ -1,0 +1,7 @@
+<div class="teacherCard-price">
+  <%# <span>Speaks: English</span> %>
+  Hourly Rate: S$
+  <% user.subjects.each do |subject| %>
+    <%= subject.hourly_rate %>
+  <% end %>
+</div>
