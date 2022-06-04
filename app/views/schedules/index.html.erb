@@ -1,70 +1,46 @@
-<div class="container">
-  <div class="row justify-content-around">
-    <div class="col-8">
-      <div class="sticky">
-        <h2>My Schedule</h2>
+<div class="container my-3" id="mySchedule" >
+  <!--  Tab bar: Availability | Schedule -->
+  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="pills-availability-tab" data-bs-toggle="pill" data-bs-target="#pills-availability" type="button" role="tab" aria-controls="pills-availability" aria-selected="true">Calendar</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="pills-schedule-tab" data-bs-toggle="pill" data-bs-target="#pills-schedule" type="button" role="tab" aria-controls="pills-schedule" aria-selected="false">View Schedule</button>
+    </li>
+  </ul>
 
-        <div class="calendar-container">
-          <% if @availability_slot %>
-            <%= week_calendar(events: @availability_slot, end_attribute: :end_time) do |date, availabilities| %>
-              <%= date %>
-              <% availabilities.each do |availability| %>
-                <div class="<%= availability.blocker ? 'booking' : 'available' %>">
-                  <p><% if availability.blocker %>
-                    Booking
-                  <% else %>
-                    Available
-                  <% end %></p>
-                  <small><%= availability.time unless availability.multi_days? %></small>
-                </div>
-              <% end %>
-            <% end %>
-          <% else %>
-            <%= week_calendar do |date| %>
-              <%= date %>
-            <% end %>
-          <% end %>
-      </div>
-      </div>
-    </div>
-    <div class="col-4">
-      <div class="form-wrapper" style="width: 400px; margin: 0 auto;">
+  <!-- Tab content: Calendar -->
+  <div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-availability" role="tabpanel" aria-labelledby="pills-availability-tab" tabindex="0">
 
-        <h3>Add an Availability</h3>
+      <!-- Tab bar for calendar view: week/month -->
+      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="pills-week-tab" data-bs-toggle="pill" data-bs-target="#pills-week" type="button" role="tab" aria-controls="pills-week" aria-selected="true">week</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pills-month-tab" data-bs-toggle="pill" data-bs-target="#pills-month" type="button" role="tab" aria-controls="pills-month" aria-selected="false">month</button>
+        </li>
+      </ul>
 
-        <%= simple_form_for(@new_availability) do |f| %>
-          <%= f.input :start_time, as: :string, input_html: {class: "datepicker"} %>
-          <%= f.input :end_time, as: :string, input_html: {class: "datepicker"} %>
-          <%= f.submit "Add availability", class: "btn btn-flat mb-3" %>
-        <% end %>
-        <hr>
-
-        <% if @users_schedule %>
-          <h3>Your Weekly Schedule:</h3>
-          <% @users_schedule.week.each do |key, value| %>
-            <p><%= key %>: <%= value[0].strftime("%H%M") %> - <%= value[1].strftime("%H%M") %></p>
-          <% end %>
-        <% else %>
-          <h3>Set your weekly schedule</h3>
-          <div class="container px-0">
-            <%= simple_form_for(@schedule) do |f| %>
-              <div class="schedule row align-items-center">
-                <% Schedule.week.each do |key, value| %>
-                  <h3><%= key %></h3>
-                  <div class="col">
-                    <%= f.input value[0], :label => "Start Time", :as => :time, :minute_step => 30, default: Time.parse('9:00') %>
-                  </div>
-                  <div class="col">
-                    <%= f.input value[1], :label => "End Time", :as => :time, :minute_step => 30, default: Time.parse('22:00') %>
-                  </div>
-                <% end %>
-              </div>
-              <%= f.submit "Set Schedule", class: "btn btn-flat mb-3" %>
-            <% end %>
-          </div>
-        <% end %>
+      <!-- Tab content for calendar view: week/month -->
+      <div class="tab-content" id="pills-tabContent" data-controller="availability">
+        <h2 style="display: inline-block;">Your schedule</h2>
+        <button class="btn btn-success" style="float: right;color: white;" data-action="click->availability#modalAppear">+</button>
+          <!-- This is the modal pop up for the new avail form-->
+          <%= render 'schedules/addavail' %>
+        <div class="tab-pane fade show active" id="pills-week" role="tabpanel" aria-labelledby="pills-week-tab" tabindex="0">
+          <%= render 'schedules/weekcalendar' %>
+        </div>
+        <div class="tab-pane fade" id="pills-month" role="tabpanel" aria-labelledby="pills-month-tab" tabindex="0">
+          <%= render 'schedules/monthcalendar' %>
         </div>
       </div>
+    </div>
+
+    <!-- Tab content: Set/View weekly schedule -->
+    <div class="tab-pane fade" id="pills-schedule" role="tabpanel" aria-labelledby="pills-schedule-tab" tabindex="0">
+      <%= render 'schedules/schedule' %>
     </div>
   </div>
 </div>
