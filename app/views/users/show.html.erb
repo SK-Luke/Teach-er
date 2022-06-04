@@ -80,6 +80,31 @@
       <!-- Content for Subject tab -->
       <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
         <h3>List of Subjects offered:</h3>
+        <% @user.subjects.each do |subject| %>
+          <div class="col-6">
+            <div class="card" data-calendar-target="subjects">
+              <div class="d-flex bd-highlight">
+                <div class="p-3 flex-grow-1 bd-highlight"><h4 id="subject_title"><%= subject.title %></h4></div>
+              </div>
+              <div class="ps-3">
+                <p id="subject_grades">Grades: <% subject.grade.each do |level| %>
+                  <% if level == subject.grade.last %>
+                    <%= level %>
+                  <% else %>
+                    <%= level %> |
+                  <% end %>
+                <% end %>
+                </p>
+              </div>
+              <div class="ps-3">
+                <p>Hourly rate: $<%= subject.hourly_rate %></p>
+              </div>
+              <div class="ps-3">
+                <p>Description: <%= subject.description %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
       <hr>
     </div>
