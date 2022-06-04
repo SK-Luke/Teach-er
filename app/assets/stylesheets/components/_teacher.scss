@@ -3,15 +3,15 @@
   // margin: 0px;
   color: black;
 }
-.teacherCard {
-  margin-bottom: 10px;
-  display: flex;
-  flex: 1 1;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-  border-radius: 10px;
-}
+// .teacherCard {
+//   margin-bottom: 10px;
+//   display: flex;
+//   flex: 1 1;
+//   flex-direction: row;
+//   justify-content: space-between;
+//   align-items: flex-start;
+//   border-radius: 10px;
+// }
 
 .teacherCard-left {
   display: flex;
@@ -31,4 +31,18 @@
 // }
 .text-yellow {
   color: rgb(242, 161, 56);
+}
+
+.teacher-main {
+  border: 1px solid rgb(190, 190, 190);
+  border-radius: 12px;
+  padding: 1rem;
+  background-color: white;
+  display: flex;
+  box-shadow: 1px 1px #888888;
+  transition: transform 500ms ease;
+}
+.teacher-main:hover {
+  box-shadow: 2px 4px #e44ed7;
+  transform: scale(1.05);
 }

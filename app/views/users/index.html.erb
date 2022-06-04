@@ -1,10 +1,10 @@
 <div class="container main-container">
-  <div class="row g-3">
+  <div class="row g-4">
     <% @users.each do |user| %>
       <% if user.role == 'Teacher' %>
         <div class="col-4">
           <%= link_to user do %>
-            <div class="teacher-main" style="border:1px solid rgb(190,190,190); border-radius: 12px; padding: 1rem; background-color: white; display: flex;">
+            <div class="teacher-main" style="">
               <%# Teacher card left %>
               <div class="teacherCard-left">
                 <div class="avatar">
