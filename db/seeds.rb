@@ -19,6 +19,9 @@ grade = ["Secondary-1", "Secondary-2", "Secondary-3", "Secondary-4/5"]
 contents = ["They/Them pretty good!", "We blazed", "Good tutor, will come back again!", "Shit tutor, don't go for this person", "#{Faker::Quotes::Shakespeare.as_you_like_it_quote}"]
 # Just playing
 num = 143596825983245
+# Seed avatar url
+avatars = ["https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1649837771/szupe9en6fswasdoqeut.jpg", "https://avatars.githubusercontent.com/u/101274666?v=4", "https://avatars.githubusercontent.com/u/94192526?v=4", "https://avatars.githubusercontent.com/u/101041793?v=4", "https://avatars.githubusercontent.com/u/87261298?v=4", "https://avatars.githubusercontent.com/u/61183700?v=4", "https://avatars.githubusercontent.com/u/29248326?v=4", "https://avatars.githubusercontent.com/u/98296829?v=4", "https://avatars.githubusercontent.com/u/103421387?v=4", "https://avatars.githubusercontent.com/u/66427600?v=4", "https://avatars.githubusercontent.com/u/64523208?v=4", "https://avatars.githubusercontent.com/u/86487114?v=4", "https://avatars.githubusercontent.com/u/97895906?v=4", "https://avatars.githubusercontent.com/u/99341925?v=4", "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1632754694/ylgajbgc61s5zhh5p0jd.jpg", "https://avatars.githubusercontent.com/u/38519324?v=4", "https://avatars.githubusercontent.com/u/64601749?v=4"]
+
 # Destory all Database
 puts "Clearing database..."
 Booking.destroy_all
@@ -57,7 +60,8 @@ puts "Creating Teachers"
     description: "From #{Faker::Educator.university} teaching #{subject.sample}",
     role: "Teacher",
     contact_number: "#{contact_num.sample}",
-    password: "password"
+    password: "password",
+    seed_avatar: avatars.sample
   )
   new_user.save!
 end
