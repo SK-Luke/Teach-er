@@ -15,6 +15,7 @@ class Availability < ApplicationRecord
 
   def split(schedule_hash)
     # get array of days between start and end times
+    destroy
     range = (start_time.to_date..end_time.to_date).to_a
 
     # If availability spans over 2 or more days
@@ -38,7 +39,6 @@ class Availability < ApplicationRecord
 
       split_into_hour_inst(new_start_time, new_end_time)
     end
-    destroy
   end
 
   # method checks if start entry is before working hours and creates the days instance accordingly
