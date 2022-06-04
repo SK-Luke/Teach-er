@@ -10,9 +10,7 @@
       <% end %>
       <p>Teaches: <%= @user.subjects.map{|subj|subj.title}.join(", ") %></p>
     </div>
-    <div class="col-4 position-relative">
-      <img class="avatar-teacher-show position-absolute top-0 start-50 translate-middle-x" alt="avatar-large" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" />
-    </div>
+    <%= render 'users/surprise' %>
     <hr>
 
     <ul class="nav nav-pills px-3 mb-4" id="pills-tab" role="tablist">
