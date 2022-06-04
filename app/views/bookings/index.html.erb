@@ -1,1 +1,2 @@
-<%= render 'bookings/default' %>
+<%= render 'bookings/teachers' if current_user.role == "Teacher" %>
+<%= render 'bookings/students' if current_user.role == "Student" %>
