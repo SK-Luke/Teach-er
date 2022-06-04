@@ -2,7 +2,7 @@ class Availability < ApplicationRecord
   belongs_to :user
 
   validates :start_time, :end_time, presence: true, format: { with: /\d+:[03]0:\d+/, message: "only allows minute to be 00 or 30" }
-
+  validates :start_time, uniqueness: { scope: :user_id }
   default_scope -> { order(:start_time) }  # Our meetings will be ordered by their start_time by default
 
   def time
