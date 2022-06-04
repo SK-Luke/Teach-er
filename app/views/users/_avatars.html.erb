@@ -1,0 +1,8 @@
+<div class="avatar">
+  <%# put avatar here %>
+  <% if user.seed_avatar == nil %>
+    <span><i class="bi bi-person-circle fa-3x"></i></span>
+    <% else %>
+  <img class="avatar" src= <%= user.seed_avatar %> alt="teacher_avatar"> 
+  <% end %>                    
+</div>

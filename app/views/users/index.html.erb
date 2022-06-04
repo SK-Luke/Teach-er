@@ -12,10 +12,7 @@
               <div class="teacher-main" style="">
                 <%# Teacher card left %>
                 <div class="teacherCard-left">
-                  <div class="avatar">
-                    <%# put avatar here %>
-                    <img class="avatar" src= <%= user.seed_avatar %> alt="teacher_avatar"> 
-                  </div>
+                  <%= render 'users/avatars', user:user %>
                   <div class="teacherCard-body">
                     <div class="teacherCard-top">
                       <div class="teacherCard-middle">
