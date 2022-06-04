@@ -1,0 +1,31 @@
+<!-- Modal portion -->
+<div id="editSchedModal" class="modal" tabindex="-1" style="background-color: rgba(0,0,0,0.4);">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="border: 5px solid #993865;background-color: #fdfaed;">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Schedule</h5>
+        <button type="button" data-action="click->schedule#modalClose" class="btn-close" aria-label="Close"></button>
+      </div>
+      <%= simple_form_for(@schedule) do |f| %>
+        <div class="modal-body">
+          <div class="schedule row align-items-center">
+            <% Schedule.week.each do |key, value| %>
+              <h3><%= key %></h3>
+              <div class="col">
+                <%= f.input value[0], :label => "Start Time", :as => :time, :minute_step => 30, default: Time.parse('9:00') %>
+              </div>
+              <div class="col">
+                <%= f.input value[1], :label => "End Time", :as => :time, :minute_step => 30, default: Time.parse('22:00') %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-action="click->schedule#modalClose">Close</button>
+          <%= f.submit "Set Schedule", class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<!-- End of Modal -->
