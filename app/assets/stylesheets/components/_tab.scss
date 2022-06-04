@@ -4,15 +4,19 @@
 .nav-link {
   color: #6d68cb;
 }
-
-.active {
+.tab-pane {
+  color: black;
+  a {
     color: white;
-    h1, h2, h3, h4, h5 {
-      color: #439775;
+  }
+}
+.active {
+    color: #282828;
+    h1, h2, h4, h5 {
+      color: #630c3c;
+    }
+
+    h3 {
+      color: #3f3b8d;
     }
   }
-
-
-.tab-content {
-  color: black;
-}

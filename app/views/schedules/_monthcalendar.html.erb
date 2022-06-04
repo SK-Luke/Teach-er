@@ -1,0 +1,22 @@
+<div class="calendar-container">
+  <% if @month_availability_slot %>
+    <%= month_calendar(events: @month_availability_slot, end_attribute: :end_time) do |date, availabilities| %>
+      <%= date %>
+      <% availabilities.each do |availability| %>
+        <div class="<%= availability.blocker ? 'booking' : 'available' %>">
+          <p><% if availability.blocker %>
+            Booking
+          <% else %>
+            Available
+          <% end %></p>
+          <small><%= availability.time unless availability.multi_days? %></small>
+        </div>
+      <% end %>
+    <% end %>
+  <!-- If no availability then show empty calendar -->
+  <% else %>
+    <%= month_calendar do |date| %>
+      <%= date %>
+    <% end %>
+  <% end %>
+</div>

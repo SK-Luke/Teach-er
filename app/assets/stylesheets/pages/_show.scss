@@ -4,11 +4,11 @@
 .teacher-content {
   min-height: 120px;
   h1, h2, h3, h4 {
-    color: #925b70;
+    color: $light-purple;
     font-weight: bold;
   }
   p {
-    color: 484848;
+    color: $dark-grey;
   }
 }
 .left-container {

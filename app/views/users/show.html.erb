@@ -8,6 +8,7 @@
       <% if @user.location %>
         <p>Class Location: <%= @user.location %></p>
       <% end %>
+      <p>Teaches: <%= @user.subjects.map{|subj|subj.title}.join(", ") %></p>
     </div>
     <div class="col-4 position-relative">
       <img class="avatar-teacher-show position-absolute top-0 start-50 translate-middle-x" alt="avatar-large" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" />
@@ -26,7 +27,7 @@
     <!-- Content for Avail Calendar tab -->
     <div class="tab-content" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
-        <h4>Book a class with <%= @user.username %></h4>
+        <h3>Book a class with <%= @user.username %></h3>
           <div class="calendar-container">
             <% if @availability_slot %>
               <%= week_calendar(events: @availability_slot, end_attribute: :end_time) do |date, availabilities| %>
@@ -35,7 +36,7 @@
                   <% unless availability.blocker %>
                     <div class="available"
                     data-action="click->calendar#select_time_slot"
-                    data-calendar-target="time">
+                    data-calendar-target="time" >
                       <small>
                         Available <br>
                         <%= availability.time unless availability.multi_days? %>
@@ -44,11 +45,11 @@
                     </div>
 
                   <!-- Modal portion -->
-                  <div id="myModal" class="modal" tabindex="-1">
+                  <div id="myModal" class="modal" tabindex="-1" style="background-color: rgba(0,0,0,0.4);">
                     <div class="modal-dialog modal-dialog-centered">
-                      <div class="modal-content">
+                      <div class="modal-content" style="border: 5px solid #993865;background-color: #fdfaed;">
                         <div class="modal-header">
-                          <h5 class="modal-title">Add a booking</h5>
+                          <h5 class="modal-title">Create a booking</h5>
                           <button type="button" data-action="click->calendar#close_modal" class="btn-close" aria-label="Close"></button>
                         </div>
                         <%= simple_form_for([@user, @booking]) do |f| %>
@@ -80,7 +81,7 @@
 
       <!-- Content for Subject tab -->
       <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
-        <h4>List of Subjects offered:</h3>
+        <h3>List of Subjects offered:</h3>
       </div>
       <hr>
     </div>
