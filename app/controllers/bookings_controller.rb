@@ -72,6 +72,7 @@ class BookingsController < ApplicationController
     params.permit(:commit)
     @booking.update(status: "confirmed") if params[:commit] == "Accept"
     @booking.update(status: "cancelled") if params[:commit] == "Decline"
+    @booking.update(status: "cancelled") if params[:commit] == "Cancel booking"
 
     redirect_to bookings_path(@booking)
   end
