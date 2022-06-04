@@ -50,6 +50,7 @@ class BookingsController < ApplicationController
       start_date = params.fetch(:start_date, Date.today).to_date
       @availability_slot = Availability.where(start_time: start_date.beginning_of_week..start_date.end_of_week)
       @schedule = Schedule.new
+      @user = User.find(params[:user_id])
       render 'users/show'
     end
   end

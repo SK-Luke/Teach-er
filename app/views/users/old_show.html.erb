@@ -1,0 +1,94 @@
+<div class="container">
+  <div class="row sticky" data-controller="calendar">
+    <div class="col-8">
+      <h2><%= @user.username %></h2>
+      <% if @user.description %>
+        <p><%= @user.description %></p>
+      <% end %>
+      <% if @user.location %>
+        <p>Class Location: <%= @user.location %></p>
+      <% end %>
+
+      <hr>
+
+      <div>
+        <h4>List of Subjects offered:</h3>
+          <% @user.subjects.each do |subject| %>
+            <div class="col-6">
+              <div class="card" data-calendar-target="subjects">
+                <div class="d-flex bd-highlight">
+                  <div class="p-3 flex-grow-1 bd-highlight"><h4 id="subject_title"><%= subject.title %></h4></div>
+                </div>
+                <div class="ps-3">
+                  <p id="subject_grades">Grades: <% subject.grade.each do |level| %>
+                    <% if level == subject.grade.last %>
+                      <%= level %>
+                    <% else %>
+                      <%= level %> |
+                    <% end %>
+                  <% end %>
+                  </p>
+                </div>
+                <div class="ps-3">
+                  <p>Hourly rate: $<%= subject.hourly_rate %></p>
+                </div>
+                <div class="ps-3">
+                  <p>Description: <%= subject.description %></p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+      </div>
+
+
+      <hr>
+
+      <h4><%= @user.username %>'s Availability: </h4>
+      <div class="calendar-container">
+        <% if @availability_slot %>
+          <%= week_calendar(events: @availability_slot, end_attribute: :end_time) do |date, availabilities| %>
+            <%= date %>
+            <% availabilities.each do |availability| %>
+              <% unless availability.blocker %>
+                <div class="available"
+                data-action="click->calendar#select_time_slot"
+                data-calendar-target="time">
+
+                  <small>
+                    Available <br>
+                    <%= availability.time unless availability.multi_days? %>
+                    <p id="time" style="font-size: 0;"><%= date %></p>
+                  </small>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% else %>
+          <%= week_calendar do |date| %>
+            <%= date %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <hr>
+
+      <h4>Reviews</h4>
+    </div>
+
+    <div class="col-4 student_booking">
+      <h3>Bookings: </h3>
+
+
+      <div data-calendar-target="input">
+        <h4> Add a booking</h4>
+        <%= simple_form_for([@user, @booking]) do |f| %>
+          <span ><%= f.input :subject_id, as: :select, input_html: { data: {calendar_target: "subject", action: "change->calendar#update_grade_input"}}, collection: @user.subjects %></span>
+          <%= f.input :grade, as: :select, input_html: { data: {calendar_target: "grade"} }, collection: Subject::GRADES %>
+          <%= f.input :start_time, :label => "Select an availability slot. Click on a slot on the calendar", input_html: { value: Time.now.beginning_of_day }, as: :string %>
+          <%= f.button :submit, "Submit a booking request", class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>
