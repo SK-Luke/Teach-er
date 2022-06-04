@@ -1,15 +1,15 @@
 <div class="container main-container">
-  <div class="row g-5">
+  <div class="row g-3">
     <% @users.each do |user| %>
       <% if user.role == 'Teacher' %>
-        <div class="col-6">
+        <div class="col-4">
           <%= link_to user do %>
             <div class="teacher-main" style="border:1px solid rgb(190,190,190); border-radius: 12px; padding: 1rem; background-color: white; display: flex;">
               <%# Teacher card left %>
               <div class="teacherCard-left">
                 <div class="avatar">
                   <%# put avatar here %>
-                  <img class="avatar" src= <%= user.seed_avatar %> alt=""> 
+                  <img class="avatar" src= <%= user.seed_avatar %> alt="teacher_avatar"> 
                 </div>
                 <div class="teacherCard-body">
                   <div class="teacherCard-top">
@@ -26,15 +26,8 @@
                     </div>
                   </div>
                   <div class="teacherCard-bottom mt-4">
-                    <div class="teacherCard-teaches mb-2">
-                      <span>
-                        Teaches: 
-                        <% user.subjects.each do |subject| %>
-                          <%= subject.title %>
-                        <% end %>
-                      </span>
-                    </div>
-                    <%# <div class="teacherCard-speaks"><span>Speaks: English</span></div> %>
+                    <%= render 'users/teachersubject', user: user %>
+                    <%= render 'users/hourlyrate', user: user %>
                   </div>
                 </div>
               </div>
