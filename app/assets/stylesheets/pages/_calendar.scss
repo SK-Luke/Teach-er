@@ -5,3 +5,13 @@
     font-weight: 600;
   }
 }
+
+.table {
+  thead {
+    background-color: $purple;
+    color: white;
+    tr {
+      font-weight: medium;
+    }
+  }
+}

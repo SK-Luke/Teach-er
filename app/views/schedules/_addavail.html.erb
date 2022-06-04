@@ -1,0 +1,22 @@
+<!-- Modal portion -->
+<div id="addAvailModal" class="modal" tabindex="-1" style="background-color: rgba(0,0,0,0.4);">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="border: 5px solid #993865;background-color: #fdfaed;">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Availability</h5>
+        <button type="button" data-action="click->availability#modalClose" class="btn-close" aria-label="Close"></button>
+      </div>
+      <%= simple_form_for(@new_availability) do |f| %>
+        <div class="modal-body">
+          <%= f.input :start_time, as: :string, input_html: {class: "datepicker"} %>
+          <%= f.input :end_time, as: :string, input_html: {class: "datepicker"} %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-action="click->availability#modalClose">Close</button>
+          <%= f.button :submit, "Submit", class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<!-- End of Modal -->
