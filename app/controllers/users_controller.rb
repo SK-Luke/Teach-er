@@ -3,8 +3,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.where(role:"Teacher")
-
-    # I can't get ratings for each user from the backend. Doing it on index.html instead. See line 27 onwards
+    # I can't get ratings for each user from controller. Doing it on index.html instead. See line 27 onwards
     # @avgRating = avgRating(@users)
   end
 
@@ -28,7 +27,7 @@ class UsersController < ApplicationController
   # def avgRating(users)
   #   sum_reviews = 0
   #   total_reviews = 0
-    
+
   #   users.each do |user|
   #     user.reviews.each do |review|
   #       sum_reviews += review.rating
