@@ -36,7 +36,7 @@
                   <% unless availability.blocker %>
                     <div class="available"
                     data-action="click->calendar#select_time_slot"
-                    data-calendar-target="time">
+                    data-calendar-target="time" >
                       <small>
                         Available <br>
                         <%= availability.time unless availability.multi_days? %>
