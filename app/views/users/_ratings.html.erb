@@ -1,7 +1,7 @@
 <div class=star-ratings>
   <% if user.reviews.count == 0 %>
     <% (5).times do %>
-    <span><i class="bi bi-star-fill"></i></span>
+    <span><i class="bi bi-star-fill text-grey"></i></span>
     <% end %>
   <% else %>
     <% sum_reviews = 0 %>
@@ -14,7 +14,7 @@
           <span><i class="bi bi-star-fill text-yellow"></i></span>
         <% end %>
         <% (5-rating).times do %>
-          <span><i class="bi bi-star-fill"></i></span>
+          <span><i class="bi bi-star-fill text-grey"></i></span>
         <% end %>
     <% end %>
   <% end %>

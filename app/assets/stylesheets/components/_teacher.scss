@@ -33,16 +33,31 @@
   color: rgb(242, 161, 56);
 }
 
+.text-grey {
+  color: rgb(190, 190, 190);
+}
+
+.teacherCard-name {
+  font-size: 16px;
+}
+
 .teacher-main {
   border: 1px solid rgb(190, 190, 190);
   border-radius: 12px;
-  padding: 1rem;
+  padding: 0.3rem;
   background-color: white;
   display: flex;
   box-shadow: 1px 1px #888888;
   transition: transform 500ms ease;
 }
+
 .teacher-main:hover {
-  box-shadow: 2px 4px #e44ed7;
+  box-shadow: 2px 4px #888888;
+  background-color: rgba(244, 47, 207, 0.3);
   transform: scale(1.05);
+}
+
+.teacher-main:hover * {
+  font-weight: 700;
+  transition: 50ms ease;
 }
