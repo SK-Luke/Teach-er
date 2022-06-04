@@ -42,6 +42,9 @@
 
             <div class="d-flex subject-status" style="align-items: self-end" >
               <h3  class = "flex-grow-1" ><%= booking.subject.title %>: <%= booking.subject.grade[0] %></h3>
+                <%= simple_form_for booking do |f| %>
+                <%= f.submit 'Cancel booking', class: "btn btn-cancel" , value: 'Cancel booking' %>
+                <% end %>
             </div>
           </div>
           </div>
