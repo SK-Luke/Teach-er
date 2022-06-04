@@ -1,8 +1,16 @@
-.sticky {
-  position: sticky;
-  top: 0;
+.position-relative {
+  z-index: -999999;
 }
-
+.teacher-content {
+  min-height: 120px;
+  h1, h2, h3, h4 {
+    color: #925b70;
+    font-weight: bold;
+  }
+  p {
+    color: 484848;
+  }
+}
 .left-container {
   width: 450px;
 }

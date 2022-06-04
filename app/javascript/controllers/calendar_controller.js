@@ -9,6 +9,9 @@ export default class extends Controller {
 
   select_time_slot(event) {
     event.preventDefault()
+    const modal = document.getElementById("myModal");
+    modal.style.display = "block";
+
     console.log(event.target.innerText.split(/\r?\n/));
     // This is an array of the date [y, m, d]
     const date = event.target.innerText.split(/\r?\n/)[3].split('-')
@@ -29,6 +32,12 @@ export default class extends Controller {
     const selected_datetime = `${date[0]}-${date[1]}-${date[2]} ${time[0]}:${time[1]}:00`
     console.log(selected_datetime)
     date_input.value = `${date[0]}-${date[1]}-${date[2]} ${time[0]}:${time[1]}:00`
+  }
+
+  close_modal(event) {
+    event.preventDefault();
+    var modal = document.getElementById("myModal");
+    modal.style.display = "none";
   }
 
   update_grade_input(event) {

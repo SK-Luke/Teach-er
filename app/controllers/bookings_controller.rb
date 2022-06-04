@@ -30,14 +30,18 @@ class BookingsController < ApplicationController
     @booking.user_id = current_user.id
     @booking.end_time = booking_params["start_time"].to_datetime + 1.hour
 
+    # TODO: Add method to update availability of the teacher to be a blocker
     if @booking.save
-      # TODO: Add method to update availability of the teacher to be a blocker
       # 1) get teacher through subject
       teacher_id = Subject.find(@booking.subject_id).user_id
       teacher = User.find(teacher_id)
       # 2) find the availability which was selected
       availability = teacher.availabilities.where(start_time: booking_params["start_time"])[0]
       # 3) change to blocker
+      if availability.nil?
+        flash[:notice] = 'That slot is not available'
+        redirect_to user_path(teacher_id)
+      end
       availability.blocker = true
       availability.save!
 
@@ -46,6 +50,7 @@ class BookingsController < ApplicationController
       start_date = params.fetch(:start_date, Date.today).to_date
       @availability_slot = Availability.where(start_time: start_date.beginning_of_week..start_date.end_of_week)
       @schedule = Schedule.new
+      @user = User.find(params[:user_id])
       render 'users/show'
     end
   end
