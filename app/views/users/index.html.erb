@@ -1,54 +1,50 @@
 <div class="container main-container">
-  <div class="row g-5">
-    <% @users.each do |user| %>
-      <% if user.role == 'Teacher' %>
-        <div class="col-6">
-          <%= link_to user do %>
-            <div class="teacher-main" style="border:1px solid rgb(190,190,190); border-radius: 12px; padding: 1rem; background-color: white; display: flex;">
-              <%# Teacher card left %>
-              <div class="teacherCard-left">
-                <div class="avatar">
-                  <%# put avatar here %>
-                  <img class="avatar" src= <%= user.seed_avatar %> alt=""> 
-                </div>
-                <div class="teacherCard-body">
-                  <div class="teacherCard-top">
-                    <div class="teacherCard-middle">
-                      <div class="teacherCard-name">
-                        <%= user.username %>
-                      </div>
-                      <div class="teacherCard-info">
-                        <span>Role: <%= user.role %></span>
-                      </div>
-                      <div>
-                        <span>From <%= user.location %>, Singapore</span>
+  <div id="banner">
+    <span class="banner-title">Find a Teach二 Today!</span>
+    <span class="banner-teacher-count"><%= @users.count %> Teachers available</span>
+    <p>Ace that exam! Find the best tutor for you: choose from our experienced tutors and get the best learning experience today!</p>
+  </div>
+    <div class="row g-4">
+      <% @users.each do |user| %>
+        <% if user.role == 'Teacher' %>
+          <div class="col-4">
+            <%= link_to user do %>
+              <div class="teacher-main" style="">
+                <%# Teacher card left %>
+                <div class="teacherCard-left">
+                  <div class="avatar">
+                    <%# put avatar here %>
+                    <img class="avatar" src= <%= user.seed_avatar %> alt="teacher_avatar"> 
+                  </div>
+                  <div class="teacherCard-body">
+                    <div class="teacherCard-top">
+                      <div class="teacherCard-middle">
+                        <div class="teacherCard-name">
+                          <span><%= user.username %></span>
+                        </div>
+                        <div class="teacherCard-info">
+                          <span>Role: <%= user.role %></span>
+                        </div>
+                        <div>
+                          <span>From <%= user.location %>, Singapore</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="teacherCard-bottom mt-4">
-                    <div class="teacherCard-teaches mb-2">
-                      <span>
-                        Teaches: 
-                        <% user.subjects.each do |subject| %>
-                          <%= subject.title %>
-                        <% end %>
-                      </span>
+                    <div class="teacherCard-bottom mt-4">
+                      <%= render 'users/teachersubject', user: user %>
+                      <%= render 'users/hourlyrate', user: user %>
                     </div>
-                    <%# <div class="teacherCard-speaks"><span>Speaks: English</span></div> %>
                   </div>
                 </div>
+                <%# Teacher card right %>
+                <div class="teacherCard-right mt-4">
+                  <%= render 'users/ratings', user: user %>
+                  <%= render 'users/bookings', user: user %>
+                </div>
               </div>
-              <%# Teacher card right %>
-              <div class="teacherCard-right mt-4">
-                <%= render 'users/ratings', user: user %>
-              <div class=lessons>
-                <span><%= user.bookings.count %> Lessons taught</span>
-              </div>
-              </div>
-            </div>
-          <% end %>
-        </div>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
   </div>
 </div>
