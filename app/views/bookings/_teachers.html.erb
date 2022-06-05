@@ -27,7 +27,8 @@
 
               <div class="d-flex flex-fill">
                 <div class="p-2 ">
-
+                  <%= cl_image_tag current_user.photo.key, width: 40, height: 40, crop: :thumb, gravity: :face,
+                  border: :"2px_solid_black", radius: :max %>
                 </div>
                 <div class="p-2">Student </div>
                 <div class="p-2"><%= booking.user.username %></div>
