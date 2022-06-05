@@ -17,7 +17,7 @@
   padding: 8px 24px;
   border-radius: 4px;
   background: #1edd88;
-  transition: background 0.3s ease;
+  // transition: background 0.3s ease;
   margin-right: 10px;
 }
 
@@ -46,10 +46,10 @@
   transition: background 0.3s ease;
 }
 
-.btn-flat:hover {
-  background: #1bcb7f;
-  color: white;
-}
+// .btn-flat:hover {
+//   background: #1bcb7f;
+//   color: white;
+// }
 
 .btn-gradient {
   color: white;
