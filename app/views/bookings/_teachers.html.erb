@@ -27,8 +27,8 @@
 
               <div class="d-flex flex-fill">
                 <div class="p-2 ">
-                  <%= cl_image_tag current_user.photo.key, width: 40, height: 40, crop: :thumb, gravity: :face,
-                  border: :"2px_solid_black", radius: :max %>
+                  <%# <%= cl_image_tag current_user.photo.key, width: 40, height: 40, crop: :thumb, gravity: :face,
+                  border: :"2px_solid_black", radius: :max %> %>
                 </div>
                 <div class="p-2">Student </div>
                 <div class="p-2"><%= booking.user.username %></div>
@@ -49,7 +49,7 @@
           </div>
           </div>
 
-          <div class="d-flex flex-column card-status">
+          <div class="d-flex card-status">
             <% if booking.status == "pending" %>
             <%= simple_form_for booking do |f| %>
               <%= f.submit 'Accept', class: "btn btn-flat mb-3" , value: 'Accept'%>
@@ -86,11 +86,10 @@
 
 
               <div class="d-flex card-user-dets">
-
               <div class="d-flex flex-fill">
                 <div class="p-2 ">
-                  <%= cl_image_tag current_user.photo.key, width: 40, height: 40, crop: :thumb, gravity: :face,
-                  border: :"2px_solid_black", radius: :max %>
+                  <%# <%= cl_image_tag current_user.photo.key, width: 40, height: 40, crop: :thumb, gravity: :face,
+                  border: :"2px_solid_black", radius: :max %> %>
                 </div>
                 <div class="p-2">Student </div>
                 <div class="p-2"><%= booking.user.username %></div>
