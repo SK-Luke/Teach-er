@@ -2,10 +2,26 @@ class UsersController < ApplicationController
   before_action :select_user, only: %i[show]
 
   def index
-    @users = User.where(role:"Teacher")
+    # @users = User.where(role:"Teacher")
     # I can't get ratings for each user from controller. Doing it on index.html instead. See line 27 onwards
     # @avgRating = avgRating(@users)
     @user = User.new
+    params.permit(:subj_name)
+    if params["search"].present?
+      search_params
+      @users = []
+      users = User.all
+      users.each do |user|
+        subj = user.subjects
+        subj.each do |s|
+          if s.title.include? params[:search][:subjects]
+            @users << user
+          end
+        end
+      end
+    else
+      @users = User.all
+    end
   end
 
   def show
@@ -21,6 +37,10 @@ class UsersController < ApplicationController
 
   def select_user
     @user = User.find(params[:id])
+  end
+
+  def search_params
+    params.require(:search).permit(:subjects)
   end
 
   # I can't get ratings for each user from the backend. Doing it on index.html instead.
