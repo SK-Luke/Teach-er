@@ -28,6 +28,7 @@
       <div class="tab-content" id="pills-tabContent" data-controller="availability">
         <h2 style="display: inline-block;">Your schedule</h2>
         <button class="btn btn-success" style="float: right;color: white;" data-action="click->availability#modalAppear">+</button>
+        <button data-action="click->availability#deleteMode" data-availability-target="delBtn" class="btn btn-danger mx-2" style="float: right;color: white;">-</button>
           <!-- This is the modal pop up for the new avail form-->
           <%= render 'schedules/addavail' %>
         <div class="tab-pane fade show active" id="pills-week" role="tabpanel" aria-labelledby="pills-week-tab" tabindex="0">
