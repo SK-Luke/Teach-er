@@ -19,5 +19,10 @@ import { initFlatpickr } from "../plugins/flatpickr";
 
 initFlatpickr();
 
-import "select2";
+import { initSelect2 } from "../components/init_select2";
+
+document.addEventListener("turbolinks:load", function () {
+  initSelect2();
+});
+import "select2/dist/css/select2";
 $(".select2").select2();

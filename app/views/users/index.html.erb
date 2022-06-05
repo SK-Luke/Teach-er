@@ -1,7 +1,7 @@
 <div class="container" >
   <h3>Filter by subject</h3>
   <%= simple_form_for :search, url: users_path, method: "GET" do |f| %>
-    <%= f.input :subjects, collection: Subject::SUBJECTS, class: 'select2', multiple: true, input_html: {value: ""}%>
+    <%= f.input :subjects, collection: Subject::SUBJECTS, input_html: { class: 'select2' }, input_html: {multiple: true}, input_html: {value: ""}%>
     <%= f.submit class: "btn btn-primary" %>
   <% end %>
 </div>
