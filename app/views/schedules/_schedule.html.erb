@@ -3,7 +3,7 @@
   data-action="click->schedule#modalAppear">Edit Schedule</button>
     <%= render 'schedules/edit' %>
   <% @users_schedule.week.each do |key, value| %>
-    <p><%= key %>: <%= value[0].strftime("%H%M") %> - <%= value[1].strftime("%H%M") %></p>
+    <p id="schedule" data-schedule-target="scheduleRef"><%= key %>: <%= value[0].strftime("%H%M") %> - <%= value[1].strftime("%H%M") %></p>
   <% end %>
 <% else %>
   <h3>Set your weekly schedule</h3>
