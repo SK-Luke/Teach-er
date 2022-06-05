@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   root to: 'users#index'
   get '/calendar', to: 'pages#calendar'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :schedules, only: %i[index new create edit]
-  resources :availabilities, only: %i[new create]
+  resources :schedules, only: %i[index new create edit update]
+  resources :availabilities, only: %i[create edit update]
 
   # As a teacher, I can view and edit bookings to update them
   # As a teacher I can delete my bookings history

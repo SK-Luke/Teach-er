@@ -6,13 +6,11 @@
         <p><%= @user.description %></p>
       <% end %>
       <% if @user.location %>
-        <p>Class Location: <%= @user.location %></p>
+        <p><b>Class Location: </b><%= @user.location %></p>
       <% end %>
-      <p>Teaches: <%= @user.subjects.map{|subj|subj.title}.join(", ") %></p>
+      <p><b>Teaches: </b><%= @user.subjects.map{|subj|subj.title}.join(", ") %></p>
     </div>
-    <div class="col-4 position-relative">
-      <img class="avatar-teacher-show position-absolute top-0 start-50 translate-middle-x" alt="avatar-large" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" />
-    </div>
+    <%= render 'users/surprise' %>
     <hr>
 
     <ul class="nav nav-pills px-3 mb-4" id="pills-tab" role="tablist">
@@ -27,7 +25,7 @@
     <!-- Content for Avail Calendar tab -->
     <div class="tab-content" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
-        <h3>Book a class with <%= @user.username %></h3>
+        <h3>Book a class with <b><%= @user.username %></b></h3>
           <div class="calendar-container">
             <% if @availability_slot %>
               <%= week_calendar(events: @availability_slot, end_attribute: :end_time) do |date, availabilities| %>
@@ -82,6 +80,31 @@
       <!-- Content for Subject tab -->
       <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
         <h3>List of Subjects offered:</h3>
+        <% @user.subjects.each do |subject| %>
+          <div class="col-6">
+            <div class="card" data-calendar-target="subjects">
+              <div class="d-flex bd-highlight">
+                <div class="p-3 flex-grow-1 bd-highlight"><h4 id="subject_title"><%= subject.title %></h4></div>
+              </div>
+              <div class="ps-3">
+                <p id="subject_grades">Grades: <% subject.grade.each do |level| %>
+                  <% if level == subject.grade.last %>
+                    <%= level %>
+                  <% else %>
+                    <%= level %> |
+                  <% end %>
+                <% end %>
+                </p>
+              </div>
+              <div class="ps-3">
+                <p>Hourly rate: $<%= subject.hourly_rate %></p>
+              </div>
+              <div class="ps-3">
+                <p>Description: <%= subject.description %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
       <hr>
     </div>

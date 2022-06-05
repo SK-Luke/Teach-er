@@ -27,21 +27,22 @@
                         </div>
                       </div>
                     </div>
-                    <div class="teacherCard-bottom mt-4">
-                      <%= render 'users/teachersubject', user: user %>
-                      <%= render 'users/hourlyrate', user: user %>
-                    </div>
+                  </div>
+                  <div class="teacherCard-bottom mt-4">
+                    <%= render 'users/teachersubject', user: user %>
+                    <%= render 'users/hourlyrate', user: user %>
                   </div>
                 </div>
-                <%# Teacher card right %>
-                <div class="teacherCard-right mt-4">
-                  <%= render 'users/ratings', user: user %>
-                  <%= render 'users/bookings', user: user %>
-                </div>
               </div>
-            <% end %>
-          </div>
-        <% end %>
+              <%# Teacher card right %>
+              <div class="teacherCard-right mt-4 mx-3">
+                <%= render 'users/ratings', user: user %>
+                <%= render 'users/bookings', user: user %>
+              </div>
+            </div>
+          <% end %>
+        </div>
       <% end %>
+    <% end %>
   </div>
 </div>

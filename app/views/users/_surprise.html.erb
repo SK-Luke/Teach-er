@@ -1,0 +1,16 @@
+<div class="col-4" data-controller="surprise">
+  <div class="surprise-container" data-surprise-target="avatar">
+    <img class="surprise-avatar" data-action="click->surprise#displayQuestion"
+    alt="avatar-large" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" />
+  </div>
+
+  <p class="joke"
+  data-surprise-target="question"
+  data-action="click->surprise#displayAnswer"
+  ></p>
+
+  <p class="joke"
+  data-surprise-target="answer"
+  data-action="click->surprise#backToAvatar"
+  >a</p>
+</div>

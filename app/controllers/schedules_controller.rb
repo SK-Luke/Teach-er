@@ -1,5 +1,5 @@
 class SchedulesController < ApplicationController
-  # before_action :set_schedule, only: [:show, :edit, :update, :destroy]
+  #before_action :set_schedule, only: [:show, :edit, :update, :destroy]
 
   def create
     @schedule = Schedule.new(schedule_params)
@@ -15,12 +15,10 @@ class SchedulesController < ApplicationController
     # This section is for the calendar view
     start_date = params.fetch(:start_date, Date.today).to_date
 
-    #@availability_slot = Availability.where(start_time: start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week)
-
     user_id = current_user.id
     @availability_slot = Availability.where(start_time: start_date.beginning_of_week..start_date.end_of_week).where(user_id: user_id)
 
-    @month_availability_slot = Availability.where(start_time: start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week)
+    @month_availability_slot = Availability.where(start_time: start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week).where(user_id: user_id)
 
     # This section is for adding a new availability
     @new_availability = Availability.new
@@ -45,9 +43,18 @@ class SchedulesController < ApplicationController
   #   @review = Review.new
   # end
 
-  # def update
-  #   @schedule.update(schedule_params)
-  # end
+  def update
+    # Since only one schedule allowed
+    @schedule = current_user.schedule
+    @schedule.update!(schedule_params)
+    out_of_office_slots = Availability.all.select { |n| n.out_of_office?(@schedule.week) && n.start_time > Time.current && !n.blocker && n.user_id == current_user.id}
+    out_of_office_slots.each(&:destroy)
+    # render(
+    #   html: "<script>alert('Updating schedule will delete future availabilities that are out of the new schedule set!')</script>".html_safe,
+    #   layout: 'application'
+    # )
+    redirect_to schedules_path, notice: "Updated schedule deletes future availabilities that are out of the new schedule set"
+  end
 
   # def destroy
   #   @schedule.destroy
@@ -64,8 +71,6 @@ class SchedulesController < ApplicationController
   end
 
   # def set_schedule
-  #   @schedule = schedule.find(params[:id])
+  #   @schedule = Schedule.find(params[:id])
   # end
-
-
 end

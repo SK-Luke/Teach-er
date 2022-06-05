@@ -13,6 +13,13 @@ class Availability < ApplicationRecord
     (end_time.to_date - start_time.to_date).to_i >= 1
   end
 
+  def out_of_office?(schedule_hash)
+    day_start_time = day_start_time(schedule_hash, start_time)
+    day_end_time = day_end_time(schedule_hash, start_time)
+    # if start time is before the schedule start time or start time is after the schedule start time
+    start_time.strftime("%H%M") < day_start_time.strftime("%H%M") || start_time.strftime("%H%M") > day_end_time.strftime("%H%M")
+  end
+
   def split(schedule_hash)
     # get array of days between start and end times
     destroy
