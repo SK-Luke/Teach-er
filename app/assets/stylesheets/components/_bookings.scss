@@ -1,15 +1,47 @@
-.bookings-container {
+// .bookings-container
+#try {
   border-style: solid;
   border-width: thin;
   padding: 8px;
-  margin-bottom: 24px;
-  margin-top: 12px;
+  // margin-bottom: 24px;
+  // margin-top: 12px;
+  background-color: #5d68cb;
+  margin: 20px 50px 20px 80px;
+  border-radius: 12px;
+}
+
+.bookings-container-inner {
+  border-style: solid;
+  border-radius: 12px;
+  border-width: thin;
+  margin: 12px 10px;
+  box-shadow: 1px 1px #242424;
+}
+
+#h1-booking {
+  color: #cab8e4;
+  margin: 12px 0 0 0;
+}
+
+#h1-booking:nth-child(odd) {
+  margin: 0 0 5px 0;
+}
+
+// #past-container {
+//   margin: 12px 0;
+//   border-style: solid;
+//   border-radius: 12px;
+// }
+
+.no-bookings {
+  text-align: center;
+  color: rgba(149, 157, 165, 0.2);
 }
 
 .card-body {
-  border-radius: 4px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  margin: 8px;
+  border-radius: 8px;
+  box-shadow: rgba(149, 157, 165, 0.2) 1px 8px 24px;
+  margin: 0px 24px;
 }
 
 .card-user-dets {
@@ -23,4 +55,36 @@
 .student_booking {
   position: sticky;
   top: 0;
+}
+
+#problem-child {
+  padding: 12px;
+}
+
+.card-status .btn {
+  margin-top: 12px;
+}
+
+.btn-flat-orange {
+  margin: 0 0 0 300px;
+  // width: 156px;
+  // height: 66px;
+}
+
+// #accept-btn {
+//   margin-top: 12px;
+// }
+
+// #decline-btn {
+//   margin-top: 12px;
+// }
+
+.p-2 {
+  font-size: 24px;
+  color: #925b70;
+}
+
+#decline-btn {
+  margin: 12px 10px 0 0;
+  border-radius: 5px;
 }

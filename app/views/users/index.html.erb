@@ -4,29 +4,27 @@
     <span class="banner-teacher-count"><%= @users.count %> Teachers available</span>
     <p>Ace that exam! Find the best tutor for you: choose from our experienced tutors and get the best learning experience today!</p>
   </div>
-  <div class="row g-4">
-    <% @users.each do |user| %>
-      <% if user.role == 'Teacher' %>
-        <div class="col-xl-4 col-lg-6 col-md-12">
-          <%= link_to user do %>
-            <div class="teacher-main justify-content-between">
-              <%# Teacher card left %>
-              <div class="teacherCard-left">
-                <div class="avatar">
-                  <%# put avatar here %>
-                  <img class="avatar" src= <%= user.seed_avatar %> alt="teacher_avatar">
-                </div>
-                <div class="teacherCard-body">
-                  <div class="teacherCard-top">
-                    <div class="teacherCard-middle">
-                      <div class="teacherCard-name">
-                        <span><%= user.username %></span>
-                      </div>
-                      <div class="teacherCard-info">
-                        <span>Role: <%= user.role %></span>
-                      </div>
-                      <div>
-                        <span>From: <%= user.location %>, Singapore</span>
+    <div class="row g-4">
+      <% @users.each do |user| %>
+          <div class="col-4">
+        <% if user.role == 'Teacher' %>
+            <%= link_to user do %>
+              <div class="teacher-main" style="">
+                <%# Teacher card left %>
+                <div class="teacherCard-left">
+                  <%= render 'users/avatars', user:user %>
+                  <div class="teacherCard-body">
+                    <div class="teacherCard-top">
+                      <div class="teacherCard-middle">
+                        <div class="teacherCard-name">
+                          <span><%= user.username %></span>
+                        </div>
+                        <div class="teacherCard-info">
+                          <span>Role: <%= user.role %></span>
+                        </div>
+                        <div>
+                          <span>From <%= user.location %>, Singapore</span>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -43,8 +41,8 @@
               </div>
             </div>
           <% end %>
-        </div>
       <% end %>
     <% end %>
+        </div>
   </div>
 </div>
