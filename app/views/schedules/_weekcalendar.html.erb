@@ -3,7 +3,7 @@
     <%= week_calendar(events: @availability_slot, end_attribute: :end_time) do |date, availabilities| %>
       <%= date %>
       <% availabilities.each do |availability| %>
-        <div class="<%= availability.blocker ? 'booking' : 'available' %>">
+        <div id="<%= availability.id %>" class="<%= availability.blocker ? 'booking' : 'available' %>" data-availability-target="slot">
           <p><% if availability.blocker %>
             Booking
           <% else %>
@@ -19,4 +19,5 @@
       <%= date %>
     <% end %>
   <% end %>
+  <button data-action="click->availability#deleteSelected" data-availability-target="cfmBtn" class="btn btn-danger mx-2" style="float: right;color: white;display: none">Confirm Delete</button>
 </div>
