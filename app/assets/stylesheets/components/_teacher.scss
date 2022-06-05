@@ -4,6 +4,10 @@
   color: black;
 }
 
+.teacher-cards {
+  margin-top: -50px;
+}
+
 .teacher-main {
   border: 1px solid rgb(190, 190, 190);
     border-radius: 12px;
@@ -39,11 +43,12 @@
 
   .teacherCard-name {
     font-size: 16px;
+    font-weight: 700;
   }
 
   &:hover {
     box-shadow: 2px 4px #888888;
-    background-color: rgba(244, 47, 207, 0.1);
+    background-color: rgb(255, 241, 241);
     transform: scale(1.05);
   }
 
