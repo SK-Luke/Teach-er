@@ -29,6 +29,7 @@ class AvailabilitiesController < ApplicationController
   # end
 
   # def update
+  #   @availability = availability.find(params[:id])
   #   @availability.update(availability_params)
   # end
 
