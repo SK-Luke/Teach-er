@@ -1,116 +1,115 @@
 <div id="main-booking-container" class="container">
-          <% if @bookings.count == 0 %>
-            <h2 class="no-bookings">You have no past bookings</h2>
-          <% end %>
   <div class="row justify-content-md-center">
-    <div class="col-12">
+    <div id="try" class="col-12">
       <div class="bookings-container">
-      <div class="bookings-container-inner">
-        <h1 id="h1-booking" class="row justify-content-md-center">Upcoming bookings</h1>
-        <div id="problem-child" class="row">
-          <% @bookings.each do |booking| %>
-          <% if booking.status == "pending" || booking.status == "confirmed" %>
-          <div class="d-flex flex-fill card-body" style="background-color: honeydew">
-          <div class="flex-fill p-2 card-dets">
-            <div class="d-flex booking-datetime">
-              <div class="flex-grow-1 bd-highlight">
-                <h2>
-                  <%= booking.start_time.strftime("%A, %d %b %Y") %>, <%=
-                  booking.start_time.strftime("%H:%M") %> to <%=
-                  booking.end_time.strftime("%H:%M") %>
-                </h2>
+
+        <div class="bookings-container-inner">
+          <h1 id="h1-booking" class="row justify-content-md-center">Upcoming bookings</h1>
+          <div id="problem-child" class="row">
+            <% @bookings.each do |booking| %>
+            <% if booking.status == "pending" || booking.status == "confirmed" %>
+            <div class="d-flex flex-fill card-body" style="background-color: honeydew">
+            <div class="flex-fill p-2 card-dets">
+              <div class="d-flex booking-datetime">
+                <div class="flex-grow-1 bd-highlight">
+                  <h2>
+                    <%= booking.start_time.strftime("%A, %d %b %Y") %>, <%=
+                    booking.start_time.strftime("%H:%M") %> to <%=
+                    booking.end_time.strftime("%H:%M") %>
+                  </h2>
+                </div>
+              </div>
+
+                <div class="d-flex card-user-dets">
+              
+                <div class="d-flex flex-fill">
+                  <div class="p-2 ">
+                    <%# <%= cl_image_tag current_user.photo.key, width: 40, height: 40, crop: :thumb, gravity: :face,
+                    border: :"2px_solid_black", radius: :max %> %>
+                  </div>
+                  <div class="p-2">Student name: </div>
+                  <div class="p-2"><%= booking.user.username.capitalize %></div>
+                </div>
+                  <% if booking.status == "pending" %>
+                    <div class="d-flex justify-content-end flex-fill grades" style="align-self: self-end"><p class = "btn-flat-orange"><%= booking.status.capitalize %></p>
+                    </div>
+                  <% elsif booking.status == "confirmed" %>
+                    <div class="d-flex align-items-end flex-fill grades" style="align-self: self-end"><p class = "btn-flat mb-3" style="margin-inline-start: auto"><%= booking.status %></p>
+                    </div>
+                  <% end %>
+                </div>
+
+              <div class="d-flex subject-status" style="align-items: self-end" >
+                <h3  class = "flex-grow-1" ><%= booking.subject.title %>: <%= booking.subject.grade[0] %></h3>
+                  <%= simple_form_for booking do |f| %>
+                  <%= f.submit 'Cancel booking', class: "btn btn-cancel" , value: 'Cancel booking' %>
+                  <% end %>
               </div>
             </div>
+            </div>
 
-              <div class="d-flex card-user-dets">
+            <div class="d-flex card-status flex-row-reverse">
+              <% if booking.status == "pending" %>
+              <%= simple_form_for booking do |f| %>
+                <%= f.submit 'Accept', class: "btn btn-flat mb-3" , value: 'Accept', id: "accept-btn"%>
+              <% end %>
+              <%= simple_form_for booking do |f| %>
+                <%= f.submit 'Decline', class: "btn btn-flat-red mb-3" , value: 'Decline', id: "decline-btn"%>
+              <% end %>
+              <% end %>
+            </div>
+          </div>
+            <% end %>
+            <% end %>
+        </div>
+
+        <div class="bookings-container-inner">
+          <h1 id="h1-booking" class="row justify-content-md-center">Past bookings</h1>
             
-              <div class="d-flex flex-fill">
-                <div class="p-2 ">
-                  <%# <%= cl_image_tag current_user.photo.key, width: 40, height: 40, crop: :thumb, gravity: :face,
-                  border: :"2px_solid_black", radius: :max %> %>
+            <div class="row">
+            <% @bookings.each do |booking| %>
+            <% if booking.status == "cancelled" || booking.status == "completed" %>
+            <div class="d-flex flex-fill card-body" style="background-color: honeydew">
+
+
+            <div class="flex-fill p-2 card-dets">
+              <div class="d-flex booking-datetime">
+                <div class="flex-grow-1 bd-highlight">
+                  <h2>
+                    <%= booking.start_time.strftime("%A, %d %b %Y") %>, <%=
+                    booking.start_time.strftime("%H:%M") %> to <%=
+                    booking.end_time.strftime("%H:%M") %>
+                  </h2>
                 </div>
-                <div class="p-2">Student name: </div>
-                <div class="p-2"><%= booking.user.username.capitalize %></div>
               </div>
-                <% if booking.status == "pending" %>
-                  <div class="d-flex justify-content-end flex-fill grades" style="align-self: self-end"><p class = "btn-flat-orange"><%= booking.status.capitalize %></p>
-                  </div>
-                <% elsif booking.status == "confirmed" %>
-                  <div class="d-flex align-items-end flex-fill grades" style="align-self: self-end"><p class = "btn-flat mb-3" style="margin-inline-start: auto"><%= booking.status %></p>
-                  </div>
-                <% end %>
-              </div>
-
-            <div class="d-flex subject-status" style="align-items: self-end" >
-              <h3  class = "flex-grow-1" ><%= booking.subject.title %>: <%= booking.subject.grade[0] %></h3>
-                <%= simple_form_for booking do |f| %>
-                <%= f.submit 'Cancel booking', class: "btn btn-cancel" , value: 'Cancel booking' %>
-                <% end %>
-            </div>
-          </div>
-          </div>
-
-          <div class="d-flex card-status flex-row-reverse">
-            <% if booking.status == "pending" %>
-            <%= simple_form_for booking do |f| %>
-              <%= f.submit 'Accept', class: "btn btn-flat mb-3" , value: 'Accept', id: "accept-btn"%>
-            <% end %>
-            <%= simple_form_for booking do |f| %>
-              <%= f.submit 'Decline', class: "btn btn-flat-red mb-3" , value: 'Decline', id: "decline-btn"%>
-            <% end %>
-            <% end %>
-          </div>
-        </div>
-          <% end %>
-          <% end %>
-      </div>
-
-
-      <div class="bookings-container-inner">
-        <h1 id="h1-booking" class="row justify-content-md-center">Past bookings</h1>
-          
-          <div class="row">
-          <% @bookings.each do |booking| %>
-          <% if booking.status == "cancelled" || booking.status == "completed" %>
-          <div class="d-flex flex-fill card-body" style="background-color: honeydew">
-
-
-          <div class="flex-fill p-2 card-dets">
-            <div class="d-flex booking-datetime">
-              <div class="flex-grow-1 bd-highlight">
-                <h2>
-                  <%= booking.start_time.strftime("%A, %d %b %Y") %>, <%=
-                  booking.start_time.strftime("%H:%M") %> to <%=
-                  booking.end_time.strftime("%H:%M") %>
-                </h2>
-              </div>
-            </div>
 
 
               <div class="d-flex card-user-dets">
-              <div class="d-flex flex-fill">
-                <div class="p-2 ">
-                  <%# <%= cl_image_tag current_user.photo.key, width: 40, height: 40, crop: :thumb, gravity: :face,
-                  border: :"2px_solid_black", radius: :max %> %>
-                </div>
+                <div class="d-flex flex-fill">
+                  <div class="p-2 ">
+                    <%# <%= cl_image_tag current_user.photo.key, width: 40, height: 40, crop: :thumb, gravity: :face,
+                    border: :"2px_solid_black", radius: :max %> %>
+                  </div>
                 <div class="p-2">Student name: </div>
                 <div class="p-2"><%= booking.user.username.capitalize %></div>
               </div>
-                  <div class="d-flex align-items-end flex-fill grades" style="align-self: self-end"><p class = "btn-flat-red mb-3" style="margin-inline-start: auto"><%= booking.status %></p></div>
+                <div class="d-flex align-items-end flex-fill grades" style="align-self: self-end"><p class = "btn-flat-red mb-3" style="margin-inline-start: auto"><%= booking.status %></p></div>
               </div>
 
-            <div class="flex-grow-1 subject-status" >
-              <h3><%= booking.subject.title %>: <%= booking.subject.grade[0] %></h3>
+              <div class="flex-grow-1 subject-status" >
+                <h3><%= booking.subject.title %>: <%= booking.subject.grade[0] %></h3>
+              </div>
+            </div>
+
+            <div class="d-flex flex-column card-status">
+
+
             </div>
           </div>
-
-          <div class="d-flex flex-column card-status">
-
-
-          </div>
-        </div>
-        <% end %>
           <% end %>
+            <% end %>
+        </div>
+
       </div>
     </div>
   </div>

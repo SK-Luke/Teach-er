@@ -6,8 +6,8 @@
   </div>
     <div class="row g-4">
       <% @users.each do |user| %>
-        <% if user.role == 'Teacher' %>
           <div class="col-4">
+        <% if user.role == 'Teacher' %>
             <%= link_to user do %>
               <div class="teacher-main" style="">
                 <%# Teacher card left %>
@@ -41,8 +41,8 @@
               </div>
             </div>
           <% end %>
-        </div>
       <% end %>
     <% end %>
+        </div>
   </div>
 </div>
