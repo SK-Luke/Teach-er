@@ -38,6 +38,9 @@ class AvailabilitiesController < ApplicationController
     @availability = Availability.find(params[:id])
     @availability.destroy
     respond_to do |format|
+      start_date = params.fetch(:start_date, Date.today).to_date
+      @availability_slot = Availability.where(start_time: start_date.beginning_of_week..start_date.end_of_week)
+      #format.js { render inline: "location.reload();" }
       format.html { render 'schedules/index' }
       format.json # Follow the classic Rails flow and look for a create.json view
     end

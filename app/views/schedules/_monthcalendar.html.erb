@@ -3,7 +3,7 @@
     <%= month_calendar(events: @month_availability_slot, end_attribute: :end_time) do |date, availabilities| %>
       <%= date %>
       <% availabilities.each do |availability| %>
-        <div class="<%= availability.blocker ? 'month_booking' : 'month_available' %>">
+        <div id="<%= availability.id %>" class="<%= availability.blocker ? 'month_booking' : 'month_available' %>" data-availability-target="slot" data-action="click->availability#selectAvailsMonth">
           <small><%= availability.time unless availability.multi_days? %></small>
         </div>
       <% end %>
@@ -14,4 +14,5 @@
       <%= date %>
     <% end %>
   <% end %>
+  <button data-action="click->availability#deleteSelected" data-availability-target="cfmBtnTwo" class="btn btn-danger mx-2" style="float: right;color: white;display: none">Confirm Delete</button>
 </div>
