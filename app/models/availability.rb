@@ -5,6 +5,16 @@ class Availability < ApplicationRecord
   validates :start_time, uniqueness: { scope: :user_id }
   default_scope -> { order(:start_time) }  # Our meetings will be ordered by their start_time by default
 
+  def json
+    {
+      id: id,
+      start_time: start_time,
+      end_time: end_time,
+      blocker: blocker,
+      user_id: user_id
+    }
+  end
+
   def time
     "#{start_time.strftime('%I:%M %p')} - #{end_time.strftime('%I:%M %p')}"
   end
