@@ -35,7 +35,7 @@ export default class extends Controller {
       ["Why was the obtuse triangle always upset?","Because its never right."],
       ["Why was math class so long?","The teacher kept going off on a tangent."],
       ["Why can you never trust an atom?","They make up literally everything."],
-      ["A neutron walks into a bar and asks the bartender how much a drink costs.", "“For you, no charge.”"]
+      ["A neutron walks into a bar and asks the bartender how much a drink costs.", "“For you, no charge.”"],
       ["Why is it best to teach physics on the edge of a cliff?","Because thats where students have the most potential."],
       ["Einstein developed a theory about space.","And it was about time too."],
       ["Why Can't You Trust Atoms?","They make up everything"],
@@ -57,13 +57,14 @@ export default class extends Controller {
 
   displayAnswer(event) {
     event.preventDefault();
+
     const joke_list = [
       ["Did you hear about the over-educated circle?", "It has 360°"],
       ["Why doesnt anybody talk to circles?","Because there is no point."],
       ["Why was the obtuse triangle always upset?","Because its never right."],
       ["Why was math class so long?","The teacher kept going off on a tangent."],
       ["Why can you never trust an atom?","They make up literally everything."],
-      ["A neutron walks into a bar and asks the bartender how much a drink costs.", "“For you, no charge.”"]
+      ["A neutron walks into a bar and asks the bartender how much a drink costs.", "“For you, no charge.”"],
       ["Why is it best to teach physics on the edge of a cliff?","Because that’s where students have the most potential."],
       ["Einstein developed a theory about space.","And it was about time too."],
       ["Why Can't You Trust Atoms?","They make up everything"],
@@ -80,12 +81,16 @@ export default class extends Controller {
       ["Why did the girl wear glasses during math class?","It improved di-vision."]
     ]
     const question = this.questionTarget;
+    console.log(question.innerText)
+    console.log(joke_list.find(element => element[0] === question.innerText))
+    const answerText = joke_list.find(element => element[0] === question.innerText)[1]
+    console.log(answerText)
     question.style.display = "none";
+
     const answer = this.answerTarget;
     answer.style.display = "block";
 
-    const randomAnswer = joke_list[Math.floor(Math.random() * joke_list.length)][1];
-    answer.innerText = randomAnswer
+    answer.innerText = answerText
   }
 
   backToAvatar(event) {
