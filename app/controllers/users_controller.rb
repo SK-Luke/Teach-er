@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     @users = User.where(role:"Teacher")
     # I can't get ratings for each user from controller. Doing it on index.html instead. See line 27 onwards
     # @avgRating = avgRating(@users)
+    @user = User.new
   end
 
   def show
