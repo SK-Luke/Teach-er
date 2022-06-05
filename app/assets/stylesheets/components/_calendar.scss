@@ -18,6 +18,20 @@
   background: #5bc48c;
   transition: background 0.3s ease;
   font-size: 14px;
+  text-align: center;
+
+  p {
+    margin: 0px;
+  }
+}
+.month_available {
+  color: white;
+  padding: 4px 4px;
+  border-radius: 4px;
+  background: #5bc48c;
+  transition: background 0.3s ease;
+  font-size: 12px;
+  text-align: center;
 
   p {
     margin: 0px;
@@ -31,6 +45,20 @@
   background: #bc3535;
   transition: background 0.3s ease;
   font-size: 14px;
+  text-align: center;
+
+  p {
+    margin: 0px;
+  }
+}
+.month_booking {
+  color: white;
+  padding: 4px 4px;
+  border-radius: 4px;
+  background: #bc3535;
+  transition: background 0.3s ease;
+  font-size: 12px;
+  text-align: center;
 
   p {
     margin: 0px;
