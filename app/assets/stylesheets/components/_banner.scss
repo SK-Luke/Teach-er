@@ -22,14 +22,20 @@
 .banner {
   background-size: cover;
   background-position: center;
-  padding: 150px 0;
+  background-repeat: no-repeat;
+  padding: 100px 0;
   height: 90vh;
 }
 
 .banner-text {
   width: 40vw;
+  text-align: justify;
 }
 
+.banner img {
+  height: 40px;
+  margin: 0 -8px 8px -8px;
+}
 
 .banner h1 {
   margin: 0;
@@ -37,6 +43,15 @@
   // text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   font-size: 32px;
   font-weight: bold;
+}
+
+.banner h3 {
+  margin: 0;
+  color: rgb(109, 104, 204);
+  // text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 130px;
 }
 
 .banner p {
