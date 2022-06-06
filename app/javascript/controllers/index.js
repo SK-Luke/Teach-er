@@ -10,5 +10,6 @@ application.load(definitionsFromContext(context));
 
 $(document).ready(function () {
   $("#search_subjects").select2();
+
   console.log("ready!");
 });

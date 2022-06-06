@@ -27,6 +27,12 @@
       <!-- Tab content for calendar view: week/month -->
       <div class="tab-content" id="pills-tabContent" data-controller="availability">
         <h2 style="display: inline-block;">Your schedule</h2>
+        <% if Schedule.all.nil? %>
+          <div class="notif mb-3" data-availability-target="notif">
+        <p style="display: inline-block;margin: auto;">You have not set a schedule yet. Go to schedules tab to set up your weekly schedule</p><button class="btn btn-danger btn-sm mx-3" data-action="click->availability#closeNotif">X</button>
+        </div>
+        <% end %>
+
         <button class="btn btn-success" style="float: right;color: white;" data-action="click->availability#modalAppear">+</button>
         <button data-action="click->availability#deleteMode" data-availability-target="delBtn" class="btn btn-danger mx-2" style="float: right;color: white;">-</button>
           <!-- This is the modal pop up for the new avail form-->
