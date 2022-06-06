@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def show
     @booking = Booking.new
+    @review = Review.new
     @user_bookings_added = []
     # This section is for the calendar view
     start_date = params.fetch(:start_date, Date.today).to_date
