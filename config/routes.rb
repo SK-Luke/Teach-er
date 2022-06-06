@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :subjects
   resources :users, only: %i[index show] do
     resources :bookings, only: %i[create]
+    resources :reviews, only: %i[create]
   end
 
   # User has many subjects

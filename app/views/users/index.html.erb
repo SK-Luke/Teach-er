@@ -21,7 +21,13 @@
             <%# Teacher card left %>
             <div class="teacherCard-left">
               <%# Avatar %>
-              <%= render 'users/avatars', user:user %>
+              
+              <% if(user.photo.key).blank? %>
+                <%= render 'users/avatars', user:user %>
+              <% else %>
+                <%= cl_image_tag booking.subject.user.photo.key, width: 40, height: 40, crop: :thumb, gravity: :face, class: 'avatar', radius: :max %>
+              <% end %>
+              
               <%# Infos %>
               <div class="teacherCard-body">
                 <span class="teacherCard-name"><%= user.username %></span>
@@ -29,7 +35,13 @@
                   <span>Role: <%= user.role %></span>
                 </div>
                 <div>
-                  <span>From <%= user.location %>, Singapore</span>
+                  <span>
+                    <% if user.location.blank? %>
+                      From Singapore
+                    <% else %>
+                      From <%= user.location %>, Singapore
+                    <% end %>
+                  </span>
                 </div>
                 <%# Subj et hrly %>
                 <div class="teacherCard-bottom mt-4">
