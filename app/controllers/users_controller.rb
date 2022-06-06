@@ -13,11 +13,14 @@ class UsersController < ApplicationController
 
   def show
     @booking = Booking.new
+    @review = Review.new
     @user_bookings_added = []
     # This section is for the calendar view
     start_date = params.fetch(:start_date, Date.today).to_date
     #@availability_slot = Availability.where(start_time: start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week)
     @availability_slot = Availability.where(start_time: start_date.beginning_of_week.beginning_of_day..start_date.end_of_week.end_of_day).where(user_id: @user.id)
+
+    # for review form, validate if user has had class with teacher
   end
 
   private

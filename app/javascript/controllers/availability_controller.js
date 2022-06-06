@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 import { csrfToken } from "@rails/ujs"
 
 export default class extends Controller {
-  static targets = ["addbtn", "slot", "delBtn", "cfmBtn", "cfmBtnTwo"]
+  static targets = ["addbtn", "slot", "delBtn", "cfmBtn", "cfmBtnTwo","weekCal"]
 
   connect() {
     console.log("hello from availability_controller!")
@@ -103,17 +103,17 @@ export default class extends Controller {
   // }
 
   deleteSelected(event) {
-    event.preventDefault;
+    event.preventDefault();
     let selected = []
     this.slotTargets.forEach(slot => {
-      console.log(slot.className)
+      // console.log(slot.className)
       if (slot.className === "selected" || slot.className === "month_selected") {
-        console.log(slot)
+        // console.log(slot)
         selected.push(slot)
       }
     })
 
-    console.log(selected)
+    // console.log(selected)
 
     selected.forEach(sel => {
       console.log(sel.id)
@@ -125,8 +125,16 @@ export default class extends Controller {
             'X-CSRF-Token': csrfToken()
         }
       })
-      .then(event.target.parentElement.remove())
+      .then(res => res.json())
+      .then((data) => {
+
+        //event.target.parentElement.remove()
+        console.log(data)
+        //this.weekCalTarget.outerHTML = data.week_calendar
+        })
       })
+
+      window.location.href = "/schedules"
     const cfmBtn = this.cfmBtnTarget;
     cfmBtn.style.display = "none";
     const cfmBtnTwo = this.cfmBtnTwoTarget;
