@@ -2,10 +2,15 @@ import { Controller } from "@hotwired/stimulus"
 import { csrfToken } from "@rails/ujs"
 
 export default class extends Controller {
-  static targets = ["addbtn", "slot", "delBtn", "cfmBtn", "cfmBtnTwo","weekCal"]
+  static targets = ["addbtn", "slot", "delBtn", "cfmBtn", "cfmBtnTwo","weekCal","notif"]
 
   connect() {
     console.log("hello from availability_controller!")
+  }
+
+  closeNotif(event) {
+    event.preventDefault()
+    this.notifTarget.style.display = "none";
   }
 
   modalAppear(event) {
