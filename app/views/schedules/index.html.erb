@@ -27,7 +27,7 @@
       <!-- Tab content for calendar view: week/month -->
       <div class="tab-content" id="pills-tabContent" data-controller="availability">
         <h2 style="display: inline-block;">Your schedule</h2>
-        <% if Schedule.all.nil? %>
+        <% if @user.schedule.nil? %>
           <div class="notif mb-3" data-availability-target="notif">
         <p style="display: inline-block;margin: auto;">You have not set a schedule yet. Go to schedules tab to set up your weekly schedule</p><button class="btn btn-danger btn-sm mx-3" data-action="click->availability#closeNotif">X</button>
         </div>
