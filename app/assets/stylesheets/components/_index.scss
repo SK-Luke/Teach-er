@@ -14,7 +14,7 @@
 @import "carousel";
 @import "surprise";
 
-:root {
+html * {
   font-family: 'Montserrat', sans-serif !important;
 
   h1 {
@@ -26,6 +26,6 @@
   }
 
   p, span {
-    font-weight: 400;
+    font-weight: 400  ;
   }
 }

@@ -1,6 +1,6 @@
 .surprise-container {
   position: relative;
-  width: 50%;
+  //width: 50%;
 }
 .click-me-circle {
   width: 100px;
@@ -16,10 +16,9 @@
 }
 
 .surprise-avatar {
-  width: 150px;
+  width: 100px;
   border-radius: 50%;
-  top: 50%;
-  left: 50%
+  float: right;
 }
 
 .surprise-avatar:hover {
@@ -76,7 +75,7 @@
   100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
 .joke {
-  width: 300px;
+  width: 200px;
   right: 0;
   border-radius: 12px;
   background-color: #eee171;
@@ -84,4 +83,42 @@
   display: none;
   text-align: center;
   padding: 12px;
+  position: relative;
+  float: right;
+}
+// .joke:before {
+//   content: "";
+//   width: 0px;
+//   height: 0px;
+//   position: absolute;
+//   border-left: 10px solid #eee171;
+//   border-right: 10px solid transparent;
+//   border-top: 10px solid #eee171;
+//   border-bottom: 10px solid transparent;
+//   right: -20px;
+//   top: 6px;
+// }
+
+// .joke:before {
+//   content: "";
+//   width: 0px;
+//   height: 0px;
+//   position: absolute;
+//   border-left: 10px solid #eee171;
+//   border-right: 10px solid transparent;
+//   border-top: 10px solid #eee171;
+//   border-bottom: 10px solid transparent;
+//   right: -23px;
+// }
+
+.joke:after {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 10px solid #eee171;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #eee171;
+  border-bottom: 10px solid transparent;
+  right: -17px;
 }
