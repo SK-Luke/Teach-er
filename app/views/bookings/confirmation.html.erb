@@ -1,8 +1,8 @@
-<div class="container">
-  <div class="shadow-sm p-3 mb-5 bg-white rounded text-center m-auto">
+<div class="container mt-5">
+  <div class="shadow-lg p-3 mb-5 bg-white rounded text-center m-auto p-5", style="background-image: url(<%= image_path "confbackground.jpg" %>); background-size: cover; max-width: 800px">
     <h1 class="mb-3">Congratulations <%= current_user.username %>!</h1>
     <p>Your order (id #<%= @booking.id %>) with <%= @booking.subject.user.username %> has gone through!</p>
-    <p>Don't forget to show up at <%= @booking.start_time %></p>
+    <p>Don't forget to show up on <b><%= @booking.start_time.to_s[0,10] %></b> at <b><%= @booking.start_time.to_s[12, 12] %></b></p>
     <hr>
     <%= link_to "See all bookings", bookings_path, class: "btn btn-primary" %>
   </div>
