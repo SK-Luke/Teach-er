@@ -25,7 +25,7 @@
     <!-- Content for Avail Calendar tab -->
     <div class="tab-content" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
-        <h3>Book a class with <b><%= @user.username %></b></h3>
+        <h3><i class="fa-solid fa-book fa-xl"></i> Book a class with <b><%= @user.username %></b></h3>
           <div class="calendar-container">
             <% if @availability_slot %>
               <%= week_calendar(events: @availability_slot, end_attribute: :end_time) do |date, availabilities| %>

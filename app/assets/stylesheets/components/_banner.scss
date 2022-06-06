@@ -1,20 +1,47 @@
-#banner {
-  margin: 30px 0 10px 0;
-  // background-color: white;
-  width: auto;
-  height: 100px;
-}
+// #banner {
+//   margin: 30px 0 10px 0;
+//   // background-color: white;
+//   width: auto;
+//   height: 100px;
+// }
 
-#banner .banner-title {
-  font-size: 32px;
-}
+// #banner .banner-title {
+//   font-size: 32px;
+// }
 
-#banner .banner-teacher-count {
-  padding: 0 12px;
-  font-size: 14px;
-  color: rgba(190, 190, 190, 0.9);
-}
+// #banner .banner-teacher-count {
+//   padding: 0 12px;
+//   font-size: 14px;
+//   color: rgba(190, 190, 190, 0.9);
+// }
 
 #banner p {
   color: rgb(76, 69, 69);
+}
+
+.banner {
+  background-size: cover;
+  background-position: center;
+  padding: 150px 0;
+  height: 90vh;
+}
+
+.banner-text {
+  width: 40vw;
+}
+
+
+.banner h1 {
+  margin: 0;
+  color: rgb(109, 104, 204);
+  // text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.banner p {
+font-size: 20px;
+color: black;
+opacity: .7;
+// text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
