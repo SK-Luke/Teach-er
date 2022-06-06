@@ -14,13 +14,19 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
+
   def student?
     self.role == "Student"
   end
 
   def teacher?
     self.role == "teacher"
+  end
+
+  def had_class_with_teacher?(teacher)
+    bookings.find { |booking|
+      (teacher.subjects.map{ |subj| subj.id }.include? booking.subject_id) && (Time.now > booking.end_time) && (booking.status == "confirmed")
+    }
   end
 
   def lessons

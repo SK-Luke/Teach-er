@@ -1,4 +1,4 @@
-<div class="calendar-container">
+<div class="calendar-container" data-availability-target="monthCal">
   <% if @month_availability_slot %>
     <%= month_calendar(events: @month_availability_slot, end_attribute: :end_time) do |date, availabilities| %>
       <%= date %>
