@@ -3,7 +3,14 @@ class Availability < ApplicationRecord
 
   validates :start_time, :end_time, presence: true, format: { with: /\d+:[03]0:\d+/, message: "only allows minute to be 00 or 30" }
   validates :start_time, uniqueness: { scope: :user_id }
+  validate :end_date_after_start_date
   default_scope -> { order(:start_time) }  # Our meetings will be ordered by their start_time by default
+
+  def end_date_after_start_date
+    unless end_time.nil? || start_time.nil?
+      errors.add(:end_time, "cannot be before start time") if end_time < start_time
+    end
+  end
 
   def json
     {
