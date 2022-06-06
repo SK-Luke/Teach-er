@@ -1,9 +1,9 @@
-<div class="container">
+<div id="main-booking-container" class="container">
   <div class="row justify-content-md-center">
-    <div class="col-10">
+    <div id="try" class="col-9">
       <div class="bookings-container">
-      <div class="bookings-container">
-        <h1 class="row justify-content-md-center">Upcoming bookings</h1>
+      <div class="bookings-container-inner">
+        <h1 id="h1-booking" class="row justify-content-md-center">Upcoming bookings</h1>
         <div class="row">
           <% @bookings.each do |booking| %>
           <% if booking.status == "pending" || booking.status == "confirmed" %>
@@ -53,8 +53,8 @@
       </div>
 
 
-      <div class="bookings-container">
-        <h1 class="row justify-content-md-center">Past bookings</h1>
+      <div class="bookings-container-inner">
+        <h1 id="h1-booking" class="row justify-content-md-center">Past bookings</h1>
           <div class="row">
           <% @bookings.each do |booking| %>
           <% if booking.status == "cancelled" || booking.status == "completed" %>

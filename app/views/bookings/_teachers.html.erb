@@ -33,7 +33,7 @@
                     <div class="d-flex justify-content-end flex-fill grades" style="align-self: self-end"><p class = "btn-flat-orange"><%= booking.status.capitalize %> confirmation</p>
                     </div>
                   <% elsif booking.status == "confirmed" %>
-                    <div class="d-flex align-items-end flex-fill grades" style="align-self: self-end"><p class = "btn-flat mb-3" style="margin-inline-start: auto"><%= booking.status %></p>
+                    <div class="d-flex align-items-end flex-fill grades" style="align-self: self-end"><p class = "btn-flat mb-3" style="margin-inline-start: auto">Booking<%= booking.status %></p>
                     </div>
                   <% end %>
                 </div>
