@@ -2,7 +2,7 @@
   <h3>Filter by subject</h3>
   <%= simple_form_for :search, url: users_path, method: "GET" do |f| %>
     <%= f.input :subjects, collection: Subject::SUBJECTS, input_html: { class: 'select2' }, id: 'js-example-basic-multiple', input_html: {multiple: true}, class: 'js-example-basic-multiple', name: "states[]", multiple: "multiple"%>
-    <%= f.submit class: "btn btn-primary" %>
+    <%= f.submit 'Seach', class: "btn btn-primary", value: 'Search' %>
   <% end %>
 <div class="banner" style="background-image: url(<%= image_path("background.jpg") %>);">
   <div class="container banner-text ms-3">
