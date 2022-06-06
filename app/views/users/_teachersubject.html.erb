@@ -2,7 +2,11 @@
   <span>
     Teaches: 
     <% user.subjects.each do |subject| %>
-      <%= subject.title %>
+      <% if(subject != user.subjects.last) %>
+        <%= subject.title %>,
+        <% else %>
+        <%= subject.title %>
+      <% end %>
     <% end %>
   </span>
 </div>

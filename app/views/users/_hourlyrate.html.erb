@@ -1,7 +1,9 @@
 <div class="teacherCard-price">
   <%# <span>Speaks: English</span> %>
-  Hourly Rate: S$
+  From: S$
+  <% array_count = [] %>
   <% user.subjects.each do |subject| %>
-    <%= subject.hourly_rate %>
+    <% array_count << subject.hourly_rate %> 
   <% end %>
+    <%= array_count.min %>
 </div>
