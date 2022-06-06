@@ -37,13 +37,14 @@ class AvailabilitiesController < ApplicationController
   def destroy
     @availability = Availability.find(params[:id])
     @availability.destroy
-    start_date = params.fetch(:start_date, Date.today).to_date
-    user_id = current_user.id
-    @availability_slot = Availability.where(start_time: start_date.beginning_of_week.beginning_of_day..start_date.end_of_week.end_of_day).where(user_id: user_id)
+
+    # start_date = params.fetch(:start_date, Date.today).to_date
+    # user_id = current_user.id
+    # @availability_slot = Availability.where(start_time: start_date.beginning_of_week.beginning_of_day..start_date.end_of_week.end_of_day).where(user_id: user_id)
+
     respond_to do |format|
-      #format.js { render inline: "location.reload();" }
-      format.html { render 'schedules/index' }
-      format.json { render 'destroy' }# Follow the classic Rails flow and look for a create.json view
+      # format.json { render 'schedules/index' }# Follow the classic Rails flow and look for a create.json view
+      format.json {{status: "ok"}}# Follow the classic Rails flow and look for a create.json view
     end
   end
 
