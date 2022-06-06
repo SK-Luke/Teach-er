@@ -1,12 +1,18 @@
 <div class="banner" style="background-image: url(<%= image_path("background.jpg") %>);">
-  <div class="container banner-text ms-3">
-    <h1>Find a Teach二 Today!</strong></h1>
+  <div class="container banner-text ms-5">
+    <h1>Find a <%= image_tag("teacher.png") %> today!</strong></h1>
     <p class="banner-teacher-count"><em><%= @users.count %> Teachers available</em></p>
     <p>Ace that exam! Find the best tutor for you: choose from our experienced tutors and get the best learning experience today!</p>
-    <a class="btn btn-flat" href="#">Apply now</a>
+  <div class="">
+    <h3>Filter by subject</h3>
+    <%= simple_form_for :search, url: users_path, method: "GET" do |f| %>
+      <%= f.input :subjects, collection: Subject::SUBJECTS, input_html: { class: 'select2' }, id: 'js-example-basic-multiple', input_html: {multiple: true}, class: 'js-example-basic-multiple', name: "states[]", multiple: "multiple"%>
+      <%= f.submit 'Seach', class: "btn btn-primary", value: 'Search' %>
+    <% end %>
+  </div>
   </div>
 </div>
-<div class="container main-container teacher-cards">
+<div class="container main-container teacher-cards mb-5">
   <div class="row g-4">
     <% @users.each do |user| %>
       <div class="col-xl-4 col-lg-6 col-md-12">

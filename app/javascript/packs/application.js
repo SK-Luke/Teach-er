@@ -12,10 +12,17 @@ Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
 
-
 import "controllers";
 import "bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { initFlatpickr } from "../plugins/flatpickr";
 
 initFlatpickr();
+
+import { initSelect2 } from "../components/init_select2";
+import "select2/dist/css/select2";
+
+document.addEventListener("turbolinks:load", function () {
+  initSelect2();
+  console.log("it works");
+});
