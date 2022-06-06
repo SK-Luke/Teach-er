@@ -13,3 +13,19 @@
 @import "banner";
 @import "carousel";
 @import "surprise";
+
+:root {
+  font-family: 'Montserrat', sans-serif;
+
+  h1 {
+    font-weight: 700;
+  }
+
+  h2, h3, h4 {
+    font-weight: 600;
+  }
+
+  p, span {
+    font-weight: 400;
+  }
+}
