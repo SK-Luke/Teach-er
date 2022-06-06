@@ -94,3 +94,16 @@
     margin: 0px;
   }
 }
+.month_selected {
+  color: #53b480;
+  padding: 4px 4px;
+  border-radius: 4px;
+  background: #5bc48c;
+  transition: background 0.3s ease;
+  font-size: 12px;
+  text-align: center;
+
+  p {
+    margin: 0px;
+  }
+}
