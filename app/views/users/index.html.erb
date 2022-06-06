@@ -1,9 +1,3 @@
-<div class="container" >
-  <h3>Filter by subject</h3>
-  <%= simple_form_for :search, url: users_path, method: "GET" do |f| %>
-    <%= f.input :subjects, collection: Subject::SUBJECTS, input_html: { class: 'select2' }, id: 'js-example-basic-multiple', input_html: {multiple: true}, class: 'js-example-basic-multiple', name: "states[]", multiple: "multiple"%>
-    <%= f.submit 'Seach', class: "btn btn-primary", value: 'Search' %>
-  <% end %>
 <div class="banner" style="background-image: url(<%= image_path("background.jpg") %>);">
   <div class="container banner-text ms-3">
     <h1>Find a Teach二 Today!</strong></h1>
@@ -11,6 +5,16 @@
     <p>Ace that exam! Find the best tutor for you: choose from our experienced tutors and get the best learning experience today!</p>
     <a class="btn btn-flat" href="#">Apply now</a>
   </div>
+  <div class="row">
+    <div class="col-4 mt-5 ms-5">
+      <h3>Filter by subject</h3>
+      <%= simple_form_for :search, url: users_path, method: "GET" do |f| %>
+        <%= f.input :subjects, collection: Subject::SUBJECTS, input_html: { class: 'select2' }, id: 'js-example-basic-multiple', input_html: {multiple: true}, class: 'js-example-basic-multiple', name: "states[]", multiple: "multiple"%>
+        <%= f.submit 'Seach', class: "btn btn-primary", value: 'Search' %>
+      <% end %>
+    </div>
+  </div>
+<div class="container" >
 </div>
 <div class="container main-container teacher-cards">
   <div class="row g-4">
