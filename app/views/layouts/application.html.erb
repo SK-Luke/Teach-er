@@ -28,74 +28,79 @@
     ></script>
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css">
+    <%# <script src="https://kit.fontawesome.com/66112e6f8b.js" crossorigin="anonymous"></script> %>
   </head>
 
   <body>
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/"><%= image_tag "teacher.png", style: 'height: 40px; margin: 0' %></a>
+        <%= link_to users_path do %>
+          <%= image_tag "teacher.png", style: 'height: 40px; margin: 0' %>
+        <% end %>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-          <% if current_user.nil? %>
-            <li class="nav-item">
-              <%= link_to "Log in", new_user_session_path, class: "nav-link" %>
+            <% if current_user.nil? %>
+              <li class="nav-item">
+                <%= link_to "Log in", new_user_session_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Edit profile", edit_user_registration_path, class: "nav-link" %>
+              </li>
+            <% elsif current_user.role == "Teacher" %>
+              <li class="nav-item">
+                <%= link_to "My Subjects", subjects_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "My schedule", schedules_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "My Bookings", bookings_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Edit profile", edit_user_registration_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Sign out", destroy_user_session_path, class: "nav-link" %>
+              </li>
+            <% elsif current_user.role == "Student" %>
+              <li class="nav-item">
+                <%= link_to "Find teachers", users_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "My bookings", bookings_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Edit profile", edit_user_registration_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Sign out", destroy_user_session_path, class: "nav-link" %>
+              </li>
+            <% end %>
+          </ul>
+          <ul class="navbar-nav me-0 mb-2 mb-lg-0">
+            <li class="nav-item nav-link">Welcome <%= current_user.username %></li>
+            <li class="nav-item", style="height: 30px; margin-top: -15px;">
+              <%= render "users/avatars", user:current_user, class: "avatar dropdown-toggle", id: "navbarDropdown", style: "height: 30px" %>
+              <%# <img class="avatar dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src=<%= current_user.seed_avatar %>
             </li>
-            <li class="nav-item">
-              <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Sign out", destroy_user_session_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Edit profile", edit_user_registration_path, class: "nav-link" %>
-            </li>
-          <% elsif current_user.role == "Teacher" %>
-            <li class="nav-item">
-              <%= link_to "My Subjects", subjects_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "My schedule", schedules_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "My Bookings", bookings_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Edit profile", edit_user_registration_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Sign out", destroy_user_session_path, class: "nav-link" %>
-            </li>
-          <% elsif current_user.role == "Student" %>
-            <li class="nav-item">
-              <%= link_to "Find teachers", users_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "My bookings", bookings_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Edit profile", edit_user_registration_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Sign out", destroy_user_session_path, class: "nav-link" %>
-            </li>
-          <% end %>
-
-
-
-
-
+            <!--li class="nav-item"-->
+            <!--/li-->
           </ul>
         </div>
+
       </div>
     </nav>
-
-    <%= render "shared/alerts" %>
-
+    <div class="container position-absolute">
+      <div class="mx-auto mw-50">
+        <%= render "shared/alerts" %>
+      </div>
+    </div>
     <%= yield %>
   </body>
 
