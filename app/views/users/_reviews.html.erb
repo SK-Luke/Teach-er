@@ -1,0 +1,42 @@
+<div>
+  <div class=star-ratings>
+    <h3 style="display: inline-block;margin-right:10px;">Reviews</h3>
+    <!-- Stars portion [Note: cannot render from partial bc user here is defined -->
+    <% if @user.reviews.count == 0 %>
+      <% (5).times do %>
+      <span><i class="bi bi-star-fill text-grey"></i></span>
+      <% end %>
+    <% else %>
+      <% sum_reviews = 0 %>
+      <% total_reviews = 0 %>
+      <% @user.reviews.each do |review| %>
+        <% sum_reviews += review.rating %>
+        <% total_reviews += 1 %>
+        <% rating = (sum_reviews.to_f / total_reviews).round %>
+          <% rating.times do %>
+            <span><i class="bi bi-star-fill text-yellow"></i></span>
+          <% end %>
+          <% (5-rating).times do %>
+            <span><i class="bi bi-star-fill text-grey"></i></span>
+          <% end %>
+      <% end %>
+    <% end %>
+    (<%= @user.reviews.count %>)
+  </div>
+
+  <div>
+    <% if @user.reviews.count %>
+      <% @user.reviews.each do |review| %>
+        <p><%= review.content %>
+        <% review.rating.times do %>
+          <i class="bi bi-star-fill text-yellow" style="font-size:10px"></i>
+        <% end %>
+        <% (5-review.rating).times do %>
+          <i class="bi bi-star-fill text-grey" style="font-size:10px"></i>
+        <% end %></p>
+      <% end %>
+    <% else %>
+      <p>No reviews yet</p>
+    <% end %>
+  </div>
+</div>

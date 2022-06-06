@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 import { csrfToken } from "@rails/ujs"
 
 export default class extends Controller {
-  static targets = ["addbtn", "slot", "delBtn", "cfmBtn", "cfmBtnTwo"]
+  static targets = ["addbtn", "slot", "delBtn", "cfmBtn", "cfmBtnTwo","weekCal"]
 
   connect() {
     console.log("hello from availability_controller!")
@@ -125,7 +125,12 @@ export default class extends Controller {
             'X-CSRF-Token': csrfToken()
         }
       })
-      .then(event.target.parentElement.remove())
+      .then((data) => {
+
+        //event.target.parentElement.remove()
+        console.log(data)
+        this.weekCalTarget.outerHTML = data.week_calendar
+        })
       })
     const cfmBtn = this.cfmBtnTarget;
     cfmBtn.style.display = "none";
