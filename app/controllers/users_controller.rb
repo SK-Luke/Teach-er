@@ -6,6 +6,8 @@ class UsersController < ApplicationController
     # I can't get ratings for each user from controller. Doing it on index.html instead. See line 27 onwards
     # @avgRating = avgRating(@users)
     @user = User.new
+    @users = []
+    search_params if params["search"].present?
     filtered_results
   end
 
@@ -28,19 +30,17 @@ class UsersController < ApplicationController
   def search_params
     params.require(:search).permit(:subjects)
     params[:search][:subjects].shift
-    return params[:search][:subjects]
   end
 
   def filtered_results
     params.permit(:subj_name)
     if params["search"].present?
-      @users = []
       subj = Subject.all
       subj.each do |s|
-        @users << s.user if search_params.include? s.title
+        @users << s.user if params[:search][:subjects].include? s.title
       end
     else
-      @users = User.all
+      @users = User.where(role: "Teacher")
     end
   end
 
